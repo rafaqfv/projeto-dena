@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lato:wght@400;700&display=swap');
+
+:root {
+    --corFundo: #FFFFFF;
+    --cor2: #DAA39F;
+    --cor3: #FFD700;
+    --cor4: #BFA2DB;
+    --fonte1: 'Dancing Script', cursive;
+    --fonte2: 'Lato', sans-serif;
+}
+
+/* Formatando */
+* {margin: 0; padding: 0; box-sizing: border-box;}
+body {min-height: 100vh; background-color: var(--corFundo);}
+
+/* Header */
+header {
+    min-height: 30vh;
+    background-color: var(--cor2);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+header h1 {
+    color: var(--cor3);
+    font-family: var(--fonte1);
+    font-size: 4.5rem;
+    text-shadow: rgba(0, 0, 0, 0.646) 0px 0px 15px;
+}
+header p {
+    color: var(--corFundo);
+    font-size: 1rem;
+    max-width: 70vw;
+    text-shadow: rgba(0, 0, 0, 0.355) 1px 1px 0px;
+}
+h2, p {font-family: var(--fonte2);}
+
+/* SEARCH ------ */
+#search {
+    max-width: 350px;
+    display: flex;
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+#search img {max-width: 30px; width: 25px;}
+#iconSearch {position: absolute; margin-left: 215px;}
+#inputSearch {
+    width: 250px;
+    height: 40px;
+    padding: 1rem;
+    background-color: var(--cor4);
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.348) 0 0 5px 0;
+    outline: none;
+    border-radius: 20px;
+    color: var(--corFundo);
+}
+#inputSearch::placeholder {
+    font-weight: 700;
+    font-family: var(--fonte2);
+}
+
+/* ARRAY: Produtos ------ */
+#arrayProducts {
+    background-color: var(--cor4);
+    display: flex;
+    margin: auto;
+    border-radius: 20px 20px 0 0;
+    width: 430px;
+    height: 282px;
+    justify-content: center;
+}
+li {
+    box-shadow: rgba(0, 0, 0, 0.246) 0px 0px 5px 0;
+    background-color: var(--corFundo);
+    list-style: none;
+    display: flex;
+    width: 370px;
+    height: 150px;
+    margin-top: 2.2em;
+    border-radius: 10px;
+}
+li img {max-width: 120px; place-self: center;}
+li span {padding: 1rem;}
+li span h2 {font-size: .9rem; font-weight: bolder;}
+li span p {font-size: .7rem;}
