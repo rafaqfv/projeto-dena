@@ -1,14 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lato:wght@400;700&display=swap');
 
 .material-symbols-rounded {
-    position: absolute;
-    /* margin-left: -21rem; */
-    left: 50px;
-    background-color: rgba(128, 128, 128, 0.152);
-    border-radius: 10px;
-    padding: .3rem;
-    cursor: pointer;
-
   font-variation-settings:
   'FILL' 0,
   'wght' 400,
@@ -16,9 +8,19 @@
   'opsz' 24
 }
 
+.back {
+    position: absolute;
+    left: 3.5rem;
+    /* background-color: rgba(128, 128, 128, 0.275); */
+    border-radius: 25%;
+    padding: .3rem;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px 0;
+}
+
 :root {
     --corFundo: #FFFFFF;
-    --cor2: #DAA39F;
+    --cor2: #e1aead;
     --cor3: #FFD700;
     --cor4: #BFA2DB;
     --fonte1: 'Dancing Script', cursive;
@@ -33,7 +35,7 @@
 
 body, html {
     min-height: 100vh;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
 
 h2, h3, h4 {
@@ -46,68 +48,85 @@ header {
     align-items: center;
     /* width: 100vw; */
     height: 20vh;
+    background-color: var(--cor2);
 }
 
 #arrayCart {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     overflow-y: auto;
-    max-height: 450px;
+    /* max-height: 500px; */
+    max-width: 800px;
+    margin: auto;
+    margin-bottom: 4.3rem;
+    flex-direction: column;
     overflow-x: hidden;
     padding: 1rem;
+    /* background-color: red; */
 }
 
 #arrayCart::-webkit-scrollbar {
     display: none;
 }
 
-li {
-    box-shadow: rgba(0, 0, 0, 0.246) 0px 0px 5px 0;
+/* Estilo dos itens da lista */
+.product-item {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.246);
     background-color: var(--corFundo);
     list-style: none;
     display: flex;
-    width: 370px;
-    height: 150px;
-    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 370px;
     border-radius: 10px;
     padding: 1rem;
-}
-
-li img {
+    position: relative;
+    margin: .5rem auto;
+  }
+  
+  .product-item img {
     max-width: 140px;
-    place-self: center;
-}
-
-li span h2 {
-    font-size: .9rem;
-    font-weight: bolder;
-}
-
-li span p {
-    font-size: .7rem;
-    margin-bottom: 2rem;
-}
-
-h4 {
-    opacity: 50%;
-    text-decoration: line-through;
-}
-
-h3::before, h4::before {
-    content: 'R$';
-}
-
-li span img {
-    cursor: pointer;
-    margin-left: 9rem;
-    margin-top: -1.5rem;
-}
-
-li span {
+    align-self: center;
+  }
+  
+  .product-details {
+    flex: 1;
     display: flex;
     flex-direction: column;
-}
+    margin-left: 1rem;
+  }
+  
+  .product-details h2 {
+    font-size: 0.9rem;
+    font-weight: bolder;
+    margin-bottom: 0.3rem;
+  }
+  
+  .product-details p {
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Estilo do preço original com linha de desconto */
+  h4 {
+    margin-top: 1.7rem;
+    opacity: 50%;
+    text-decoration: line-through;
+  }
+  
+  /* Estilizando o símbolo de moeda para os preços */
+  h3::before,
+  h4::before {
+    content: "R$ ";
+  }
+  
+  /* Estilo do ícone */
+  .favorite {
+    cursor: pointer;
+    position: absolute;
+    bottom: 1.2rem;
+    right: 2rem;
+    user-select: none;
+  }
 
 button {
     width: 400px;

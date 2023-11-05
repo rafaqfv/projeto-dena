@@ -3,39 +3,89 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carrinho</title>
-    <link rel="stylesheet" href="estilos/cart.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/" />
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Carrinho</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link rel="stylesheet" href="estilos/cart.css" />
+    <link rel="stylesheet" href="estilos/product.css" />
   </head>
   <body>
     <header>
-      <span class="material-symbols-rounded">
-        <a href="index.html"> arrow_back </a>
+      <span
+        class="material-symbols-rounded back"
+        onclick="window.history.back();"
+      >
+        arrow_back
       </span>
       <img src="img/cart.png" alt="" />
     </header>
     <ul id="arrayCart">
-      <li>
-        <input type="checkbox" name="" id="" />
-        <img src="img/rommanelcolar.webp" alt="" />
-        <span>
+      <li class="product-item">
+        <img src="img/rommanelcolar.webp" alt="Pingente de borboleta" />
+        <div class="product-details">
           <h2>Pingente borboleta de prata com zircônias</h2>
           <p>Rommanel - pingente</p>
-          <span>
+          <div class="price-info">
             <h4>224</h4>
             <h3>199,90</h3>
-            <img class="favorite" src="img/heart.png" alt="" />
-          </span>
-        </span>
+            <span class="material-symbols-rounded favorite">heart_plus</span>
+          </div>
+        </div>
+      </li>
+      <li class="product-item">
+        <img src="img/rommanelcolar.webp" alt="Pingente de borboleta" />
+        <div class="product-details">
+          <h2>Pingente borboleta de prata com zircônias</h2>
+          <p>Rommanel - pingente</p>
+          <div class="price-info">
+            <h4>224</h4>
+            <h3>199,90</h3>
+            <span class="material-symbols-rounded favorite">heart_plus</span>
+          </div>
+        </div>
+      </li>
+      <li class="product-item">
+        <img src="img/rommanelcolar.webp" alt="Pingente de borboleta" />
+        <div class="product-details">
+          <h2>Pingente borboleta de prata com zircônias</h2>
+          <p>Rommanel - pingente</p>
+          <div class="price-info">
+            <h4>224</h4>
+            <h3>199,90</h3>
+            <span class="material-symbols-rounded favorite">heart_plus</span>
+          </div>
+        </div>
+      </li>
+      <li class="product-item">
+        <img src="img/rommanelcolar.webp" alt="Pingente de borboleta" />
+        <div class="product-details">
+          <h2>Pingente borboleta de prata com zircônias</h2>
+          <p>Rommanel - pingente</p>
+          <div class="price-info">
+            <h4>224</h4>
+            <h3>199,90</h3>
+            <span class="material-symbols-rounded favorite">heart_plus</span>
+          </div>
+        </div>
       </li>
     </ul>
     <button>Finalizar Pedidos</button>
+    <script src="favoritos.js"></script>
   </body>
 </html>

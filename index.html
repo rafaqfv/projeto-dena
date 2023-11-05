@@ -3,12 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <title>Dena Cosméticos</title>
-    <link rel="stylesheet" href="estilos/style.css" />
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link rel="stylesheet" href="estilos/style.css" />
   </head>
   <body>
     <header>
@@ -20,18 +24,23 @@
     </header>
 
     <!-- Barra de pesquisa, filtro e carrinho -->
-    <span id="search">
-      <input type="text" id="inputSearch" placeholder="Buscar" />
-      <span class="material-symbols-rounded" id="iconSearch"> search </span>
-      <span class="material-symbols-rounded" style="cursor: pointer">
-        filter_list
-      </span>
-      <a href="cart.html">
-        <span class="material-symbols-rounded" style="margin-top: 5px">
+    <nav>
+      <div id="search">
+        <input type="text" id="inputSearch" placeholder="Buscar" />
+        <span class="material-symbols-rounded" id="iconSearch"> search </span>
+        <span class="material-symbols-rounded" style="cursor: pointer">
+          filter_list
+        </span>
+        <span
+          id="cart-icon"
+          class="material-symbols-rounded"
+          onclick="window.location.href = './cart.html'"
+          style="cursor: pointer"
+        >
           shopping_cart
         </span>
-      </a>
-    </span>
+      </div>
+    </nav>
 
     <!-- Onde os produtos serão mostrados -->
     <ul id="arrayProducts">
@@ -43,7 +52,7 @@
           <div class="price-info">
             <h4>224</h4>
             <h3>199,90</h3>
-            <span class="material-symbols-rounded in_right">heart_plus</span>
+            <span class="material-symbols-rounded favorite">heart_plus</span>
           </div>
         </div>
       </li>
@@ -55,7 +64,19 @@
           <div class="price-info">
             <h4>224</h4>
             <h3>199,90</h3>
-            <span class="material-symbols-rounded in_right">heart_plus</span>
+            <span class="material-symbols-rounded favorite">heart_plus</span>
+          </div>
+        </div>
+      </li>
+      <li class="product-item">
+        <img src="img/rommanelcolar.webp" alt="Pingente de borboleta" />
+        <div class="product-details">
+          <h2>Pingente borboleta de prata com zircônias</h2>
+          <p>Rommanel - pingente</p>
+          <div class="price-info">
+            <h4>224</h4>
+            <h3>199,90</h3>
+            <span class="material-symbols-rounded favorite">heart_plus</span>
           </div>
         </div>
       </li>

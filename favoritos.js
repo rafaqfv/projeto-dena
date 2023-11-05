@@ -1,14 +1,13 @@
-const fav = document.querySelectorAll('.in_right');
-let isFav = false;
-const arrayProducts = document.querySelector('#arrayProducts');
+const fav = document.querySelectorAll(".favorite");
 
-fav.forEach(element => {
-    element.addEventListener('click', () => {
-        if (isFav) {
-            element.innerText = 'heart_plus';
-        } else {
-            element.innerText = 'favorite';
-        }
-        isFav = !isFav;
-    })
+fav.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const clickedButton = event.target; // Obtém o botão específico que foi clicado
+
+    if (clickedButton.innerText === "heart_plus") {
+      clickedButton.innerText = "favorite";
+    } else {
+      clickedButton.innerText = "heart_plus";
+    }
+  });
 });
