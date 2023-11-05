@@ -1,147 +1,146 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lato:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lato:wght@400;700&display=swap");
 
 .material-symbols-rounded {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
 .back {
-    position: absolute;
-    left: 3.5rem;
-    /* background-color: rgba(128, 128, 128, 0.275); */
-    border-radius: 25%;
-    padding: .3rem;
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px 0;
+  position: absolute;
+  left: 3.5rem;
+  /* background-color: rgba(128, 128, 128, 0.275); */
+  border-radius: 25%;
+  padding: 0.3rem;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px 0;
 }
 
 :root {
-    --corFundo: #FFFFFF;
-    --cor2: #e1aead;
-    --cor3: #FFD700;
-    --cor4: #BFA2DB;
-    --fonte1: 'Dancing Script', cursive;
-    --fonte2: 'Lato', sans-serif;
+  --corFundo: #ffffff;
+  --cor2: #e1aead;
+  --cor3: #ffd700;
+  --cor4: #bfa2db;
+  --fonte1: "Dancing Script", cursive;
+  --fonte2: "Lato", sans-serif;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body, html {
-    min-height: 100vh;
-    /* overflow-y: hidden; */
+body,
+html {
+  min-height: 100vh;
+  /* overflow-y: hidden; */
 }
 
-h2, h3, h4 {
-    font-family: var(--fonte2);
+h2,
+h3,
+h4 {
+  font-family: var(--fonte2);
 }
 
 header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* width: 100vw; */
-    height: 20vh;
-    background-color: var(--cor2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 100vw; */
+  height: 20vh;
+  background-color: var(--cor2);
 }
 
 #arrayCart {
-    display: flex;
-    justify-content: center;
-    overflow-y: auto;
-    /* max-height: 500px; */
-    max-width: 800px;
-    margin: auto;
-    margin-bottom: 4.3rem;
-    flex-direction: column;
-    overflow-x: hidden;
-    padding: 1rem;
-    /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+  /* max-height: 500px; */
+  max-width: 800px;
+  margin: auto;
+  margin-bottom: 4.3rem;
+  flex-direction: column;
+  overflow-x: hidden;
+  padding: 1rem;
+  /* background-color: red; */
 }
 
 #arrayCart::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 /* Estilo dos itens da lista */
 .product-item {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.246);
-    background-color: var(--corFundo);
-    list-style: none;
-    display: flex;
-    width: 100%;
-    max-width: 370px;
-    border-radius: 10px;
-    padding: 1rem;
-    position: relative;
-    margin: .5rem auto;
-  }
-  
-  .product-item img {
-    max-width: 140px;
-    align-self: center;
-  }
-  
-  .product-details {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-left: 1rem;
-  }
-  
-  .product-details h2 {
-    font-size: 0.9rem;
-    font-weight: bolder;
-    margin-bottom: 0.3rem;
-  }
-  
-  .product-details p {
-    font-size: 0.7rem;
-    margin-bottom: 1rem;
-  }
-  
-  /* Estilo do preço original com linha de desconto */
-  h4 {
-    margin-top: 1.7rem;
-    opacity: 50%;
-    text-decoration: line-through;
-  }
-  
-  /* Estilizando o símbolo de moeda para os preços */
-  h3::before,
-  h4::before {
-    content: "R$ ";
-  }
-  
-  /* Estilo do ícone */
-  .favorite {
-    cursor: pointer;
-    position: absolute;
-    bottom: 1.2rem;
-    right: 2rem;
-    user-select: none;
-  }
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.246);
+  background-color: var(--corFundo);
+  list-style: none;
+  display: flex;
+  width: 100%;
+  max-width: 370px;
+  border-radius: 10px;
+  padding: 1rem;
+  position: relative;
+  margin: 0.5rem auto;
+}
+
+.product-item img {
+  max-width: 140px;
+  align-self: center;
+}
+
+.product-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.product-details h2 {
+  font-size: 0.9rem;
+  font-weight: bolder;
+  margin-bottom: 0.3rem;
+}
+
+.product-details p {
+  font-size: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+/* Estilo do preço original com linha de desconto */
+h4 {
+  margin-top: 1.7rem;
+  opacity: 50%;
+  text-decoration: line-through;
+}
+
+/* Estilizando o símbolo de moeda para os preços */
+h3::before,
+h4::before {
+  content: "R$ ";
+}
+
+/* Estilo do ícone */
+.favorite {
+  cursor: pointer;
+  position: absolute;
+  bottom: 1.2rem;
+  right: 2rem;
+  user-select: none;
+}
 
 button {
-    width: 400px;
-    height: 60px;
-    background-color: var(--cor3);
-    outline: none;
-    border: none;
-    border-radius: 40px;
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 1rem;
-    font-weight: bold;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.217) 0 5px 5px 0;
+  width: 400px;
+  height: 60px;
+  background-color: var(--cor3);
+  outline: none;
+  border: none;
+  border-radius: 40px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.217) 0 5px 5px 0;
 }

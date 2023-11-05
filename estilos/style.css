@@ -84,7 +84,7 @@ header p {
 }
 
 #cart-icon {
-  padding: .3rem;
+  padding: 0.3rem;
   box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px 0;
   border-radius: 25%;
   /* border: solid var(--cor2) 1px; */
@@ -117,7 +117,7 @@ header p {
   flex-direction: column;
   align-items: center;
   /* gap: 1rem; */
-  outline: rgb(0, 0, 0) solid 2px;
+  outline: rgb(0, 0, 0) solid 1px;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -143,15 +143,15 @@ header p {
 }
 
 @media screen and (orientation: portrait) {
-  .product-item:first-child { 
+  .product-item:first-child {
     margin-top: 2rem;
   }
-  
+
   .product-item:last-child {
     margin-bottom: 1rem;
   }
 }
-  
+
 .product-item img {
   max-width: 140px;
   align-self: center;
@@ -215,7 +215,7 @@ h4::before {
   header h1 {
     font-size: 6.5rem;
   }
-  
+
   header p {
     font-size: 1.1rem;
     max-width: 400px;
