@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Carrinho</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <link rel="stylesheet" href="estilos/cart.css" />
+    <link rel="stylesheet" href="estilos/product.css" />
+  </head>
+  <body>
+    <header>
+      <span
+        class="material-icons back"
+        onclick="window.history.back();"
+      >
+        arrow_back
+      </span>
+      <img src="img/cart.png" alt="" />
+    </header>
+    <ul id="arrayCart">
+      <li class="product-item">
+        <img src="img/rommanelcolar.webp" alt="Pingente de borboleta" />
+        <div class="product-details">
+          <h2>Pingente borboleta de prata com zircônias</h2>
+          <p>Rommanel - pingente</p>
+          <div class="price-info">
+            <h4>224</h4>
+            <h3>199,90</h3>
+            <span class="material-icons favorite">favorite_border</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <button id="btnConfirm">Finalizar Pedidos</button>
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/favoritos.js"></script>
+  </body>
+</html>

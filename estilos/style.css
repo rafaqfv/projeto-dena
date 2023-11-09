@@ -1,91 +1,284 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lato:wght@400;700&display=swap');
+/* Importando fontes */
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lato:wght@400;700&display=swap");
 
+
+/* Definindo variáveis de cor e fonte */
 :root {
-    --corFundo: #FFFFFF;
-    --cor2: #DAA39F;
-    --cor3: #FFD700;
-    --cor4: #BFA2DB;
-    --fonte1: 'Dancing Script', cursive;
-    --fonte2: 'Lato', sans-serif;
+  --corFundo: #ffffff;
+  --cor2: #e1aead;
+  --cor3: #ffd700;
+  --cor4: #bfa2db;
+  --fonte1: "Dancing Script", cursive;
+  --fonte2: "Lato", sans-serif;
 }
 
-/* Formatando */
-* {margin: 0; padding: 0; box-sizing: border-box;}
-body {min-height: 100vh; background-color: var(--corFundo);}
+/* Reset de estilos padrão */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* Header */
+h2,
+h3,
+h4,
+p {
+  font-family: var(--fonte2);
+}
+
+/* Estilo do corpo da página */
+body {
+  min-height: 100vh;
+  overflow-y: hidden;
+  background-color: var(--corFundo);
+}
+
+/* Estilo do cabeçalho */
 header {
-    min-height: 30vh;
-    background-color: var(--cor2);
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  min-height: 30vh;
+  background-color: var(--cor2);
+  background: url( /img/bacc.jpg);
+  background-position: center center;
+  background-size: cover;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
+
+.openModalBtn {
+  position: absolute;
+  left: 1rem;
+  cursor: pointer;
+}
+
+#addItemModal::backdrop {
+  background-color: #0000003a;
+}
+
+#addItemModal {
+  z-index: 5;
+  max-width: 80%;
+  height: 80%;
+  margin: 10vh auto;
+  padding: 20px;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  text-align: center;
+}
+
+#addItemModal h2 {
+  margin-bottom: 20px;
+}
+
+#addItemModal input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+
+#addItemModal menu {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+menu > button {
+  cursor: pointer;
+  padding: .5rem;
+  border-radius: 5px;
+  border: none;
+}
+
+/* Estilo dos elementos do cabeçalho */
 header h1 {
-    color: var(--cor3);
-    font-family: var(--fonte1);
-    font-size: 4.5rem;
-    text-shadow: rgba(0, 0, 0, 0.646) 0px 0px 15px;
+  color: var(--cor3);
+  font-family: var(--fonte1);
+  font-size: 4.5rem;
+  text-shadow: rgba(0, 0, 0, 0.646) 0px 0px 15px;
 }
+
 header p {
-    color: var(--corFundo);
-    font-size: 1rem;
-    max-width: 70vw;
-    text-shadow: rgba(0, 0, 0, 0.355) 1px 1px 0px;
+  color: var(--corFundo);
+  font-size: 1rem;
+  max-width: 70vw;
+  text-shadow: rgba(0, 0, 0, 0.355) -1px 1px 0px;
 }
-h2, p {font-family: var(--fonte2);}
 
-/* SEARCH ------ */
+/* Estilo da seção de pesquisa */
 #search {
-    max-width: 350px;
-    display: flex;
-    margin: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    justify-content: space-between;
-    align-items: center;
-}
-#search img {max-width: 30px; width: 25px;}
-#iconSearch {position: absolute; margin-left: 215px;}
-#inputSearch {
-    width: 250px;
-    height: 40px;
-    padding: 1rem;
-    background-color: var(--cor4);
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.348) 0 0 5px 0;
-    outline: none;
-    border-radius: 20px;
-    color: var(--corFundo);
-}
-#inputSearch::placeholder {
-    font-weight: 700;
-    font-family: var(--fonte2);
+  max-width: 350px;
+  display: flex;
+  margin: auto;
+  margin: 1rem auto;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
-/* ARRAY: Produtos ------ */
+#iconSearch {
+  position: absolute;
+  left: 14rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 50%;
+}
+
+#cart-icon {
+  padding: 0.3rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px 0;
+  border-radius: 25%;
+  /* border: solid var(--cor2) 1px; */
+}
+
+#inputSearch {
+  width: 260px;
+  height: 40px;
+  padding: 1rem;
+  background-color: var(--cor4);
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  color: var(--corFundo);
+  font-family: var(--fonte2);
+}
+
+/* Estilo da lista de produtos */
 #arrayProducts {
-    background-color: var(--cor4);
-    display: flex;
-    margin: auto;
-    border-radius: 20px 20px 0 0;
-    width: 430px;
-    height: 282px;
-    justify-content: center;
+  background-color: var(--cor4);
+  margin: auto;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  /* height: 390px; */
+  max-height: 55%;
+  /* padding: 2rem; */
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* gap: 1rem; */
+  outline: rgb(0, 0, 0) solid 1px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
-li {
-    box-shadow: rgba(0, 0, 0, 0.246) 0px 0px 5px 0;
-    background-color: var(--corFundo);
-    list-style: none;
-    display: flex;
+
+#arrayProducts::-webkit-scrollbar {
+  display: none;
+}
+
+/* Estilo dos itens da lista */
+.product-item {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.246);
+  background-color: var(--corFundo);
+  list-style: none;
+  display: flex;
+  width: 100%;
+  min-width: 210px;
+  max-width: 240px;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem;
+  position: relative;
+}
+
+@media screen and (orientation: portrait) {
+  .product-item {
     width: 370px;
-    height: 150px;
-    margin-top: 2.2em;
-    border-radius: 10px;
+    max-width: 370px;
+  }
+  
+  .product-item:first-child {
+    margin-top: 2rem;
+  }
+
+  .product-item:last-child {
+    margin-bottom: 1rem;
+  }
 }
-li img {max-width: 120px; place-self: center;}
-li span {padding: 1rem;}
-li span h2 {font-size: .9rem; font-weight: bolder;}
-li span p {font-size: .7rem;}
+
+.product-item img {
+  max-width: 140px;
+  align-self: center;
+}
+
+.product-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.product-details h2 {
+  font-size: 0.9rem;
+  font-weight: bolder;
+  margin-bottom: 0.3rem;
+}
+
+.product-details p {
+  font-size: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+/* Estilo do preço original com linha de desconto */
+h4 {
+  margin-top: 1.7rem;
+  opacity: 50%;
+  text-decoration: line-through;
+}
+
+/* Estilizando o símbolo de moeda para os preços */
+h3::before,
+h4::before {
+  content: "R$ ";
+}
+
+/* Estilo do ícone */
+.favorite {
+  cursor: pointer;
+  position: absolute;
+  bottom: 1.2rem;
+  right: 2rem;
+  user-select: none;
+  transition: .5s;
+}
+
+@media screen and (orientation: landscape) {
+  #arrayProducts {
+    flex-direction: row;
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+    border-radius: 10px;
+    outline: none;
+    overflow-x: auto;
+  }
+
+  .product-item {
+    flex-direction: column;
+  }
+
+  header h1 {
+    font-size: 6.5rem;
+  }
+
+  header p {
+    font-size: 1.1rem;
+    max-width: 400px;
+  }
+
+  #search {
+    max-width: 600px;
+    justify-content: space-between;
+  }
+
+  #inputSearch {
+    width: 400px;
+  }
+
+  #iconSearch {
+    left: 23rem;
+  }
+}

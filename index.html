@@ -3,11 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>Dena Cosméticos</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="estilos/style.css" />
   </head>
   <body>
     <header>
+      <span class="material-icons openModalBtn" id="openModalBtn"> login </span>
       <h1>Dena</h1>
       <p>
         Levando <strong>beleza</strong> e <strong>auto-estima</strong> através
@@ -15,24 +34,60 @@
       </p>
     </header>
 
+    <dialog id="addItemModal">
+      <form method="dialog">
+        <h2>Adicionar Item</h2>
+        <input
+          type="file"
+          name=""
+          id="imagemName"
+          accept="image/png, image/jpeg"
+        />
+        <input type="text" id="itemName" placeholder="Digite o nome do item" />
+        <input type="text" id="itemCateroria" placeholder="Digite a categoria" />
+        <input type="text" id="itemPreco" placeholder="Digite o preço" />
+        <menu>
+          <button id="addItemBtn" type="submit">Adicionar</button>
+          <button type="reset">Cancelar</button>
+        </menu>
+      </form>
+    </dialog>
+
     <!-- Barra de pesquisa, filtro e carrinho -->
-    <span id="search">
-      <input type="text" id="inputSearch" placeholder="Buscar" />
-      <img id="iconSearch" src="img/seach-icon.png" alt="" />
-      <img id="filter" src="img/filter.png" alt="" />
-      <img id="cart" src="img/cart.png" alt="" />
-    </span>
+    <nav>
+      <div id="search">
+        <input type="text" id="inputSearch" placeholder="Buscar" />
+        <span class="material-icons" id="iconSearch"> search </span>
+        <span class="material-icons" style="cursor: pointer">
+          filter_list
+        </span>
+        <span
+          id="cart-icon"
+          class="material-icons"
+          onclick="window.location.href = './cart.html'"
+          style="cursor: pointer"
+        >
+          shopping_cart
+        </span>
+      </div>
+    </nav>
 
     <!-- Onde os produtos serão mostrados -->
     <ul id="arrayProducts">
-      <li>
-        <!-- TODO: design do <li>
-        <img src="img/rommanelcolar.webp" alt="" />
-        <span>
+      <li class="product-item">
+        <img src="img/rommanelcolar.webp" alt="Pingente de borboleta" />
+        <div class="product-details">
           <h2>Pingente borboleta de prata com zircônias</h2>
           <p>Rommanel - pingente</p>
-        </span> -->
+          <div class="price-info">
+            <h4>224</h4>
+            <h3>199,90</h3>
+            <span class="material-icons favorite">favorite_border</span>
+          </div>
+        </div>
       </li>
     </ul>
+    <script src="scripts/favoritos.js"></script>
+    <script src="/scripts/modal.js"></script>
   </body>
 </html>
