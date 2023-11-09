@@ -28,9 +28,9 @@ addItemModal.addEventListener("reset", function () {
 
 function addNovoProduto() {
   try {
-    const name = itemName.value.trim();
-    const categoria = itemCategoria.value.trim();
-    const preco = parseFloat(itemPreco.value);
+    // const name = itemName.value.trim();
+    // const categoria = itemCategoria.value.trim();
+    // const preco = parseFloat(itemPreco.value);
     
     const li = document.createElement('li');
   
@@ -43,11 +43,11 @@ function addNovoProduto() {
     li.appendChild(div);
   
     const h2 = document.createElement('h2');
-    h2.textContent = name;
+    h2.textContent = 'Romanel';
     div.appendChild(h2);
   
     const p = document.createElement('p');
-    p.textContent = categoria;
+    p.textContent = 'categoria';
     div.appendChild(p);
   
     const divPrice = document.createElement('div');
@@ -56,7 +56,7 @@ function addNovoProduto() {
   
     const h4 = 124.99;
     const h3 = document.createElement('h3');
-    h3.textContent = preco;
+    h3.textContent = 123;
     divPrice.appendChild(h3);
   
   
