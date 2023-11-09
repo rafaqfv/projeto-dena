@@ -1,9 +1,6 @@
 /* Importando fontes */
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lato:wght@400;700&display=swap");
 
-.material-symbols-rounded {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-}
 
 /* Definindo variáveis de cor e fonte */
 :root {
@@ -32,6 +29,7 @@ p {
 /* Estilo do corpo da página */
 body {
   min-height: 100vh;
+  overflow-y: hidden;
   background-color: var(--corFundo);
 }
 
@@ -39,7 +37,7 @@ body {
 header {
   min-height: 30vh;
   background-color: var(--cor2);
-  background: url(https://img.freepik.com/fotos-gratis/diferentes-tipos-de-cosmeticos-espalhados-na-mesa-de-rosa_23-2148046961.jpg?w=1380&t=st=1699227756~exp=1699228356~hmac=30b3d69c95ae7b6d25b6a4e32d410ee3d985d4f2ff49295ac7672a171c6e6f56);
+  background: url( /img/bacc.jpg);
   background-position: center center;
   background-size: cover;
   text-align: center;
@@ -47,6 +45,50 @@ header {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.openModalBtn {
+  position: absolute;
+  left: 1rem;
+  cursor: pointer;
+}
+
+#addItemModal::backdrop {
+  background-color: #0000003a;
+}
+
+#addItemModal {
+  z-index: 5;
+  max-width: 80%;
+  height: 80%;
+  margin: 10vh auto;
+  padding: 20px;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  text-align: center;
+}
+
+#addItemModal h2 {
+  margin-bottom: 20px;
+}
+
+#addItemModal input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+
+#addItemModal menu {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+menu > button {
+  cursor: pointer;
+  padding: .5rem;
+  border-radius: 5px;
+  border: none;
 }
 
 /* Estilo dos elementos do cabeçalho */
@@ -135,7 +177,7 @@ header p {
   display: flex;
   width: 100%;
   min-width: 210px;
-  max-width: 370px;
+  max-width: 240px;
   border-radius: 10px;
   padding: 1rem;
   margin: 1rem;
@@ -143,6 +185,11 @@ header p {
 }
 
 @media screen and (orientation: portrait) {
+  .product-item {
+    width: 370px;
+    max-width: 370px;
+  }
+  
   .product-item:first-child {
     margin-top: 2rem;
   }
@@ -195,6 +242,7 @@ h4::before {
   bottom: 1.2rem;
   right: 2rem;
   user-select: none;
+  transition: .5s;
 }
 
 @media screen and (orientation: landscape) {
