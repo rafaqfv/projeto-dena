@@ -108,10 +108,11 @@ header p {
 
 /* Estilo da seção de pesquisa */
 #search {
-  max-width: 350px;
+  max-width: 380px;
   display: flex;
   margin: auto;
   margin: 1rem auto;
+  padding: 0 .5rem;
   justify-content: space-between;
   align-items: center;
   position: relative;

@@ -1,10 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
 var addItemModal = document.getElementById("addItemModal");
 var openModalBtn = document.getElementById("openModalBtn");
-var itemName = document.getElementById("itemName");
-var itemPreco = document.getElementById("itemPreco");
-var itemCategoria = document.getElementById("itemCategoria");
-const arrayProducts = document.getElementById('arrayProducts');
+const arrayProducts = document.getElementById("arrayProducts");
 
 openModalBtn.addEventListener("click", function () {
   addItemModal.showModal();
@@ -28,49 +24,49 @@ addItemModal.addEventListener("reset", function () {
 
 function addNovoProduto() {
   try {
-    // const name = itemName.value.trim();
-    // const categoria = itemCategoria.value.trim();
-    // const preco = parseFloat(itemPreco.value);
-    
-    const li = document.createElement('li');
-  
-    const img = document.createElement('img');
-    img.setAttribute('src', 'img/rommanelcolar.webp');
+    var itemName = document.getElementById("itemName").value.trim();
+    var itemPreco = document.getElementById("itemPreco").value.trim();
+    var itemCategoria = document.getElementById("itemCategoria").value.trim();
+
+    const li = document.createElement("li");
+    li.classList.add("product-item");
+
+    const img = document.createElement("img");
+    img.setAttribute("src", "img/rommanelcolar.webp");
     li.appendChild(img);
-  
-    const div = document.createElement('div');
-    div.classList.add('product-details');
+
+    const div = document.createElement("div");
+    div.classList.add("product-details");
     li.appendChild(div);
-  
-    const h2 = document.createElement('h2');
-    h2.textContent = 'Romanel';
+
+    const h2 = document.createElement("h2");
+    h2.textContent = itemName;
     div.appendChild(h2);
-  
-    const p = document.createElement('p');
-    p.textContent = 'categoria';
+
+    const p = document.createElement("p");
+    p.textContent = itemCategoria;
     div.appendChild(p);
-  
-    const divPrice = document.createElement('div');
-    divPrice.classList.add('price-info');
+
+    const divPrice = document.createElement("div");
+    divPrice.classList.add("price-info");
     div.appendChild(divPrice);
-  
+
     const h4 = 124.99;
-    const h3 = document.createElement('h3');
-    h3.textContent = 123;
+    const h3 = document.createElement("h3");
+    h3.textContent = itemPreco;
     divPrice.appendChild(h3);
-  
-  
-    const span = document.createElement('span');
-    span.classList.add('material-icons favorite');
-    span.innerHTML = 'favorite_border';
+
+    const span = document.createElement("span");
+    span.classList.add("material-icons");
+    span.classList.add("favorite");
+    span.innerHTML = "favorite_border";
     div.appendChild(span);
-  
+
     arrayProducts.appendChild(li);
     addItemModal.close();
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
-
 
   // <li class="product-item">
   //   <img src="img/rommanelcolar.webp" alt="Pingente de borboleta" />
@@ -84,7 +80,4 @@ function addNovoProduto() {
   //     </div>
   //   </div>
   // </li>;
-
-
 }
-});
