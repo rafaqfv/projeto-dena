@@ -43,9 +43,24 @@
           id="imagemName"
           accept="image/png, image/jpeg"
         />
-        <input type="text" id="itemName" placeholder="Digite o nome do item" />
-        <input type="text" id="itemCateroria" placeholder="Digite a categoria" />
-        <input type="text" id="itemPreco" placeholder="Digite o preço" />
+        <input
+          type="text"
+          id="itemName"
+          placeholder="Digite o nome do item"
+          required
+        />
+        <input
+          type="text"
+          id="itemCategoria"
+          placeholder="Digite a categoria"
+          required
+        />
+        <input
+          type="number"
+          id="itemPreco"
+          placeholder="Digite o preço"
+          required
+        />
         <menu>
           <button id="addItemBtn" type="submit">Adicionar</button>
           <button type="reset">Cancelar</button>
@@ -88,6 +103,6 @@
       </li>
     </ul>
     <script src="scripts/favoritos.js"></script>
-    <script src="/scripts/modal.js"></script>
+    <script src="scripts/add-item.js"></script>
   </body>
 </html>

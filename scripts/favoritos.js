@@ -1,3 +1,4 @@
+
 const fav = document.querySelectorAll(".favorite");
 
 fav.forEach((button) => {

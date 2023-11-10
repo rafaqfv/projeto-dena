@@ -37,7 +37,7 @@ body {
 header {
   min-height: 30vh;
   background-color: var(--cor2);
-  background: url( /img/bacc.jpg);
+  background: url(/img/bacc.jpg);
   background-position: center center;
   background-size: cover;
   text-align: center;
@@ -108,10 +108,11 @@ header p {
 
 /* Estilo da seção de pesquisa */
 #search {
-  max-width: 350px;
+  max-width: 380px;
   display: flex;
   margin: auto;
   margin: 1rem auto;
+  padding: 0 .5rem;
   justify-content: space-between;
   align-items: center;
   position: relative;
@@ -182,6 +183,7 @@ header p {
   padding: 1rem;
   margin: 1rem;
   position: relative;
+  text-transform: capitalize;
 }
 
 @media screen and (orientation: portrait) {
