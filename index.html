@@ -44,18 +44,21 @@
           accept="image/png, image/jpeg"
         />
         <input
+          autocomplete="off"
           type="text"
           id="itemName"
           placeholder="Digite o nome do item"
           required
         />
         <input
+          autocomplete="off"
           type="text"
           id="itemCategoria"
           placeholder="Digite a categoria"
           required
         />
         <input
+          autocomplete="off"
           type="number"
           id="itemPreco"
           placeholder="Digite o preço"
@@ -88,20 +91,7 @@
     </nav>
 
     <!-- Onde os produtos serão mostrados -->
-    <ul id="arrayProducts">
-      <li class="product-item">
-        <img src="img/rommanelcolar.webp" alt="Pingente de borboleta" />
-        <div class="product-details">
-          <h2>Pingente borboleta de prata com zircônias</h2>
-          <p>Rommanel - pingente</p>
-          <div class="price-info">
-            <h4>224</h4>
-            <h3>199,90</h3>
-            <span class="material-icons favorite">favorite_border</span>
-          </div>
-        </div>
-      </li>
-    </ul>
+    <ul id="arrayProducts"></ul>
     <script src="scripts/favoritos.js"></script>
     <script src="scripts/add-item.js"></script>
   </body>

@@ -51,21 +51,30 @@ header {
   position: absolute;
   left: 1rem;
   cursor: pointer;
+  padding: .5rem;
+  border-radius: 25%;
+  transition: .3s;
+}
+
+.openModalBtn:hover {
+  background-color: #0000000d;
 }
 
 #addItemModal::backdrop {
   background-color: #0000003a;
+  backdrop-filter: blur(5px);
 }
 
 #addItemModal {
   z-index: 5;
-  max-width: 80%;
+  max-width: 400px;
   height: 80%;
   margin: 10vh auto;
   padding: 20px;
   background-color: #fefefe;
   border: 1px solid #888;
   text-align: center;
+  border-radius: .5rem;
 }
 
 #addItemModal h2 {
@@ -74,14 +83,18 @@ header {
 
 #addItemModal input {
   width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
+  margin-bottom: .6rem;
+  padding: .5rem;
 }
 
 #addItemModal menu {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 1rem;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 menu > button {
@@ -89,6 +102,12 @@ menu > button {
   padding: .5rem;
   border-radius: 5px;
   border: none;
+  background-color: #008000;
+  color: var(--corFundo);
+}
+
+menu > button[type=reset] {
+  background-color: rgb(255, 0, 0);
 }
 
 /* Estilo dos elementos do cabeçalho */
@@ -183,6 +202,7 @@ header p {
   padding: 1rem;
   margin: 1rem;
   position: relative;
+  text-transform: capitalize;
 }
 
 @media screen and (orientation: portrait) {
@@ -203,6 +223,7 @@ header p {
 .product-item img {
   max-width: 140px;
   align-self: center;
+  aspect-ratio: 1/1;
 }
 
 .product-details {
@@ -228,12 +249,6 @@ h4 {
   margin-top: 1.7rem;
   opacity: 50%;
   text-decoration: line-through;
-}
-
-/* Estilizando o símbolo de moeda para os preços */
-h3::before,
-h4::before {
-  content: "R$ ";
 }
 
 /* Estilo do ícone */

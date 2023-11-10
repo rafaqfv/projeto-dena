@@ -1,6 +1,7 @@
 var addItemModal = document.getElementById("addItemModal");
 var openModalBtn = document.getElementById("openModalBtn");
 const arrayProducts = document.getElementById("arrayProducts");
+const arrayCart = document.getElementById('arrayCart')
 
 openModalBtn.addEventListener("click", function () {
   addItemModal.showModal();
@@ -13,7 +14,7 @@ addItemModal.addEventListener("close", function () {
 
 addItemModal.addEventListener("submit", function (event) {
   // Adicionar lógica para lidar com o item adicionado aqui
-  addNovoProduto();
+  addNovoProduto(arrayProducts);
   event.preventDefault();
 });
 
@@ -22,17 +23,17 @@ addItemModal.addEventListener("reset", function () {
   addItemModal.close();
 });
 
-function addNovoProduto() {
+function addNovoProduto(array) {
   try {
-    var itemName = document.getElementById("itemName").value.trim();
-    var itemPreco = document.getElementById("itemPreco").value.trim();
-    var itemCategoria = document.getElementById("itemCategoria").value.trim();
+    const itemName = document.getElementById("itemName").value.trim();
+    const itemPreco = Number(document.getElementById("itemPreco").value.trim());
+    const itemCategoria = document.getElementById("itemCategoria").value.trim();
 
     const li = document.createElement("li");
     li.classList.add("product-item");
 
     const img = document.createElement("img");
-    img.setAttribute("src", "img/rommanelcolar.webp");
+    img.setAttribute("src", 'img/rommanelcolar.webp');
     li.appendChild(img);
 
     const div = document.createElement("div");
@@ -51,9 +52,11 @@ function addNovoProduto() {
     divPrice.classList.add("price-info");
     div.appendChild(divPrice);
 
-    const h4 = 124.99;
+    const h4 = document.createElement('h4');
     const h3 = document.createElement("h3");
-    h3.textContent = itemPreco;
+    h3.textContent = 'R$ '+Number(itemPreco);
+    h4.textContent = 'R$ '+Number((itemPreco + (itemPreco * 0.2))).toFixed(2).replace('.', ',');
+    divPrice.appendChild(h4);
     divPrice.appendChild(h3);
 
     const span = document.createElement("span");
@@ -62,7 +65,9 @@ function addNovoProduto() {
     span.innerHTML = "favorite_border";
     div.appendChild(span);
 
-    arrayProducts.appendChild(li);
+    favorito(span);
+
+    array.appendChild(li);
     addItemModal.close();
   } catch (error) {
     console.error(error);

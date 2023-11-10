@@ -1,13 +1,10 @@
-const fav = document.querySelectorAll(".favorite");
-
-fav.forEach((button) => {
-  button.addEventListener("click", (event) => {
-    const clickedButton = event.target; // Obtém o botão específico que foi clicado
-
-    if (clickedButton.innerText === "favorite_border") {
-      clickedButton.innerText = "favorite";
+function favorito(span) {
+  span.addEventListener('click', () => {
+    if (span.innerText === "favorite_border") {
+      span.innerText = "favorite";
+      addNovoProduto(arrayCart);
     } else {
-      clickedButton.innerText = "favorite_border";
+      span.innerText = "favorite_border";
     }
   });
-});
+}
