@@ -37,7 +37,7 @@ body {
 header {
   min-height: 30vh;
   background-color: var(--cor2);
-  background: url( /img/bacc.jpg);
+  background: url(/img/bacc.jpg);
   background-position: center center;
   background-size: cover;
   text-align: center;
@@ -139,7 +139,7 @@ header p {
 
 #iconSearch {
   position: absolute;
-  left: 14rem;
+  left: 14.5rem;
   top: 50%;
   transform: translateY(-50%);
   opacity: 50%;
