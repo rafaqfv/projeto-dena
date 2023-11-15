@@ -7,75 +7,86 @@ openModalBtn.addEventListener("click", function () {
 });
 
 addItemModal.addEventListener("close", function () {
-  document.getElementById("itemCategoria").value = '';
-  document.getElementById("itemPreco").value = '';
-  document.getElementById("itemName").value = '';
+  document.getElementById("itemCategoria").value = "";
+  document.getElementById("itemPreco").value = "";
+  document.getElementById("itemName").value = "";
 });
 
 addItemModal.addEventListener("submit", function (event) {
-  addNovoProduto();
+  arrayProducts.appendChild(criaProduto());
   event.preventDefault();
+  addItemModal.close();
 });
 
 addItemModal.addEventListener("reset", function () {
   addItemModal.close();
 });
 
-function formataPreco(preco) {
-  
+function criaElemento(tag, classes, conteudo) {
+  const elemento = document.createElement(tag);
+  if (classes) elemento.classList.add(...classes);
+  if (conteudo) elemento.textContent = conteudo;
+  return elemento;
 }
 
-function addNovoProduto() {
-  try {
-    const itemName = document.getElementById("itemName").value.trim();
-    const itemPreco = Number(document.getElementById("itemPreco").value.trim());
-    const itemCategoria = document.getElementById("itemCategoria").value.trim();
+function criaImagem() {
+  const img = criaElemento("img");
+  img.setAttribute("src", "img/rommanelcolar.webp");
+  return img;
+}
 
-    const li = document.createElement("li");
-    li.classList.add("product-item");
+function criaDetalhesProduto(itemName, itemCategoria, itemPreco) {
+  const div = criaElemento("div", ["product-details"]);
 
-    const img = document.createElement("img");
-    img.setAttribute("src", "img/rommanelcolar.webp");
-    li.appendChild(img);
+  const h2 = criaElemento("h2", null, itemName);
+  div.appendChild(h2);
 
-    const div = document.createElement("div");
-    div.classList.add("product-details");
-    li.appendChild(div);
+  const p = criaElemento("p", null, itemCategoria);
+  div.appendChild(p);
 
-    const h2 = document.createElement("h2");
-    h2.textContent = itemName;
-    div.appendChild(h2);
+  const divPrice = criaElemento("div", ["price-info"]);
+  div.appendChild(divPrice);
 
-    const p = document.createElement("p");
-    p.textContent = itemCategoria;
-    div.appendChild(p);
+  const h4 = criaElemento("h4");
+  const h3 = criaElemento(
+    "h3",
+    null,
+    "R$ " + Number(itemPreco).toFixed(2).replace(".", ",")
+  );
+  h4.textContent =
+    "R$ " +
+    Number(itemPreco + (itemPreco * 0.2))
+      .toFixed(2)
+      .replace(".", ",");
+  divPrice.appendChild(h4);
+  divPrice.appendChild(h3);
 
-    const divPrice = document.createElement("div");
-    divPrice.classList.add("price-info");
-    div.appendChild(divPrice);
+  const span = document.createElement("span");
+  span.classList.add("material-icons");
+  span.classList.add("favorite");
+  span.innerHTML = "favorite_border";
+  div.appendChild(span);
+  favorito(span);
 
-    const h4 = document.createElement("h4");
-    const h3 = document.createElement("h3");
-    h3.textContent = "R$ " + Number(itemPreco).toFixed(2).replace(".", ",");
-    h4.textContent =
-      "R$ " +
-      Number(itemPreco + itemPreco * 0.2)
-        .toFixed(2)
-        .replace(".", ",");
-    divPrice.appendChild(h4);
-    divPrice.appendChild(h3);
+  return div;
+}
 
-    const span = document.createElement("span");
-    span.classList.add("material-icons");
-    span.classList.add("favorite");
-    span.innerHTML = "favorite_border";
-    div.appendChild(span);
+function criaProduto(itemName, itemPreco, itemCategoria) {
+  itemName = document.getElementById("itemName").value.trim();
+  itemPreco = document.getElementById("itemPreco").value.trim();
+  itemCategoria = document.getElementById("itemCategoria").value.trim();
 
-    favorito(span);
+  const li = criaElemento("li", ["product-item"]);
 
-    arrayProducts.appendChild(li);
-    addItemModal.close();
-  } catch (error) {
-    console.error(error);
-  }
+  const img = criaImagem();
+  li.appendChild(img);
+
+  const detalhesProduto = criaDetalhesProduto(
+    itemName,
+    itemCategoria,
+    itemPreco
+  );
+  li.appendChild(detalhesProduto);
+
+  return li;
 }
