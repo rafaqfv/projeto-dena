@@ -234,21 +234,26 @@ header p {
 }
 
 .product-details h2 {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: bolder;
   margin-bottom: 0.3rem;
 }
 
 .product-details p {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   margin-bottom: 1rem;
 }
 
 /* Estilo do preço original com linha de desconto */
 h4 {
-  margin-top: 1.7rem;
+  margin-top: 2.7rem;
   opacity: 50%;
   text-decoration: line-through;
+  font-size: .9rem;
+}
+
+h3 {
+  font-size: 1.1rem;
 }
 
 /* Estilo do ícone */
