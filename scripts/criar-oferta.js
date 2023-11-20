@@ -1,8 +1,7 @@
 const addItemModal = document.getElementById("addItemModal");
-const openModalBtn = document.getElementById("openModalBtn");
 const arrayProducts = document.getElementById("arrayProducts");
 
-openModalBtn.addEventListener("click", function () {
+document.getElementById("openModalBtn").addEventListener("click", function () {
   addItemModal.showModal();
 });
 
