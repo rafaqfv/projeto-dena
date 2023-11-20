@@ -153,39 +153,33 @@ function criaFavorito(item) {
 
 // ! FIREBASE
 
-function getDocs() {
+async function getDocs() {
   const liArray = [];
 
-  docRef
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // doc.data() é um objeto com os dados do documento
-        const data = doc.data();
-        console.log(data);
+  try {
+    const querySnapshot = await docRef.get();
 
-        const li = criaElemento("li", ["product-item"]);
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      const li = criaElemento("li", ["product-item"]);
 
-        const img = criaImagem();
-        li.appendChild(img);
+      const img = criaImagem();
+      li.appendChild(img);
 
-        const detalhesProduto = criaDetalhesProduto(
-          data.nome,
-          data.categoria,
-          data.preco
-        );
+      const detalhesProduto = criaDetalhesProduto(
+        data.nome,
+        data.categoria,
+        data.preco
+      );
 
-        li.appendChild(detalhesProduto);
-
-        liArray.push(li);
-
-        return li;
-      });
-      return liArray;
-    })
-    .catch((error) => {
-      console.log("Erro ao obter documentos: ", error);
+      li.appendChild(detalhesProduto);
+      liArray.push(li);
     });
+  } catch (error) {
+    console.log("Erro ao obter documentos: ", error);
+  }
+
+  return liArray;
 }
 
 function docAdd(itemName, itemCategoria, itemPreco) {
