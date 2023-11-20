@@ -92,6 +92,19 @@
 
     <!-- Onde os produtos serão mostrados -->
     <ul id="arrayProducts"></ul>
-    <script src="scripts/criar-oferta.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyAH506uCg6BzzHLh6QvZGXvBNunBPPubpI",
+        authDomain: "ifnmg-5a1ad.firebaseapp.com",
+        projectId: "ifnmg-5a1ad",
+        storageBucket: "ifnmg-5a1ad.appspot.com",
+        messagingSenderId: "945466355678",
+        appId: "1:945466355678:web:b10d15e8fd9928042cb74f",
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script type="module" src="scripts/criar-oferta.js"></script>
   </body>
 </html>

@@ -1,3 +1,6 @@
+const db = firebase.firestore();
+const docRef = db.collection("produtos");
+
 const addItemModal = document.getElementById("addItemModal");
 const arrayProducts = document.getElementById("arrayProducts");
 
@@ -21,39 +24,10 @@ addItemModal.addEventListener("reset", function () {
   addItemModal.close();
 });
 
-function armazenaItem(
-  itemName,
-  itemCategoria,
-  itemPreco,
-  itemFavorito = false
-) {
-  const items = JSON.parse(localStorage.getItem("items")) || [];
-
-  const item = {
-    nome: itemName,
-    categoria: itemCategoria,
-    preco: itemPreco,
-    favorito: itemFavorito,
-  };
-
-  const index = items.findIndex((i) => i.nome === itemName);
-
-  if (index !== -1) {
-    items[index] = item;
-  } else {
-    items.push(item);
-  }
-
-  console.log(item);
-
-  localStorage.setItem("items", JSON.stringify(items));
-}
-
-window.addEventListener("load", () => {
-  const items = JSON.parse(localStorage.getItem("items") || []);
-
-  items.forEach((item) => {
-    arrayProducts.appendChild(pegaItem(item.nome, item.preco, item.categoria));
+window.addEventListener("DOMContentLoaded", async () => {
+  const liArray = await getDocs();
+  liArray.forEach((li) => {
+    arrayProducts.appendChild(li);
   });
 });
 
@@ -131,29 +105,12 @@ function criaProduto(itemName, itemPreco, itemCategoria) {
     favorito: false,
   };
 
+  docAdd(itemName, itemCategoria, itemPreco);
+
   const span = criaFavorito(item);
   li.appendChild(span);
 
-  armazenaItem(itemName, itemCategoria, itemPreco);
-
-  return li;
-}
-
-function pegaItem(itemName, itemPreco, itemCategoria) {
-  const items = JSON.parse(localStorage.getItem("items") || []);
-
-  const li = criaElemento("li", ["product-item"]);
-
-  const img = criaImagem();
-  li.appendChild(img);
-
-  const detalhesProduto = criaDetalhesProduto(
-    itemName,
-    itemCategoria,
-    itemPreco
-  );
-
-  li.appendChild(detalhesProduto);
+  docAdd(itemName, itemCategoria, itemPreco);
 
   return li;
 }
@@ -192,4 +149,56 @@ function criaFavorito(item) {
   );
   favorito(span);
   return span;
+}
+
+// ! FIREBASE
+
+function getDocs() {
+  const liArray = [];
+
+  docRef
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // doc.data() é um objeto com os dados do documento
+        const data = doc.data();
+        console.log(data);
+
+        const li = criaElemento("li", ["product-item"]);
+
+        const img = criaImagem();
+        li.appendChild(img);
+
+        const detalhesProduto = criaDetalhesProduto(
+          data.nome,
+          data.categoria,
+          data.preco
+        );
+
+        li.appendChild(detalhesProduto);
+
+        liArray.push(li);
+
+        return li;
+      });
+      return liArray;
+    })
+    .catch((error) => {
+      console.log("Erro ao obter documentos: ", error);
+    });
+}
+
+function docAdd(itemName, itemCategoria, itemPreco) {
+  docRef
+    .add({
+      nome: itemName,
+      categoria: itemCategoria,
+      preco: itemPreco,
+    })
+    .then((docRef) => {
+      console.log("Documento foi escrito com sucesso! ", docRef.id);
+    })
+    .catch((error) => {
+      console.error("Erro ao adicionar documento: ", error);
+    });
 }
