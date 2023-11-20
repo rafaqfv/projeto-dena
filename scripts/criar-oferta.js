@@ -1,36 +1,82 @@
 const db = firebase.firestore();
 const docRef = db.collection("produtos");
+const docRefCart = db.collection("carrinho");
 
 const addItemModal = document.getElementById("addItemModal");
 const arrayProducts = document.getElementById("arrayProducts");
 
-document.getElementById("openModalBtn").addEventListener("click", function () {
-  addItemModal.showModal();
-});
+// Event Listeners
+document.getElementById("openModalBtn").addEventListener("click", openModal);
+addItemModal.addEventListener("close", resetForm);
+addItemModal.addEventListener("submit", handleSubmit);
+addItemModal.addEventListener("reset", closeAndResetForm);
+window.addEventListener("DOMContentLoaded", loadProducts);
 
-addItemModal.addEventListener("close", function () {
+// Funções
+function openModal() {
+  addItemModal.showModal();
+}
+
+function resetForm() {
   document.getElementById("itemCategoria").value = "";
   document.getElementById("itemPreco").value = "";
-  document.getElementById("itemName").value = "";
-});
+  document.getElementById("itemNome").value = "";
+}
 
-addItemModal.addEventListener("submit", function (event) {
-  arrayProducts.appendChild(criaProduto());
+async function handleSubmit(event) {
   event.preventDefault();
+  const newItem = criaProduto();
+  arrayProducts.appendChild(newItem);
   addItemModal.close();
-});
+}
 
-addItemModal.addEventListener("reset", function () {
+function closeAndResetForm() {
   addItemModal.close();
-});
+  resetForm();
+}
 
-window.addEventListener("DOMContentLoaded", async () => {
+async function loadProducts() {
   const liArray = await getDocs();
   liArray.forEach((li) => {
     arrayProducts.appendChild(li);
   });
-});
+}
 
+function criaProduto() {
+  const itemNome = document.getElementById("itemNome").value.trim();
+  const itemPreco = document.getElementById("itemPreco").value.trim();
+  const itemCategoria = document.getElementById("itemCategoria").value.trim();
+
+  const li = criaElemento("li", ["product-item"]);
+
+  const img = criaImagem();
+  li.appendChild(img);
+
+  const detalhesProduto = criaDetalhesProduto(
+    itemNome,
+    itemCategoria,
+    itemPreco
+  );
+  li.appendChild(detalhesProduto);
+
+  const item = {
+    id: Date.now().toString(),
+    nome: itemNome,
+    categoria: itemCategoria,
+    preco: parseFloat(itemPreco),
+    favorito: false,
+  };
+
+  const span = criaFavorito(item);
+
+  docAdd(item);
+
+  li.appendChild(span);
+
+  return li;
+}
+
+// Funções Auxiliares
 function criaElemento(tag, classes, conteudo) {
   const elemento = document.createElement(tag);
   if (classes) elemento.classList.add(...classes);
@@ -44,10 +90,10 @@ function criaImagem() {
   return img;
 }
 
-function criaDetalhesProduto(itemName, itemCategoria, itemPreco) {
+function criaDetalhesProduto(itemNome, itemCategoria, itemPreco) {
   const div = criaElemento("div", ["product-details"]);
 
-  const h2 = criaElemento("h2", null, itemName);
+  const h2 = criaElemento("h2", null, itemNome);
   div.appendChild(h2);
 
   const p = criaElemento("p", null, itemCategoria);
@@ -81,64 +127,16 @@ function criaDetalhesProduto(itemName, itemCategoria, itemPreco) {
   return div;
 }
 
-function criaProduto(itemName, itemPreco, itemCategoria) {
-  itemName = document.getElementById("itemName").value.trim();
-  itemPreco = document.getElementById("itemPreco").value.trim();
-  itemCategoria = document.getElementById("itemCategoria").value.trim();
-
-  const li = criaElemento("li", ["product-item"]);
-
-  const img = criaImagem();
-  li.appendChild(img);
-
-  const detalhesProduto = criaDetalhesProduto(
-    itemName,
-    itemCategoria,
-    itemPreco
-  );
-  li.appendChild(detalhesProduto);
-
-  const item = {
-    nome: itemName,
-    categoria: itemCategoria,
-    preco: itemPreco,
-    favorito: false,
-  };
-
-  docAdd(itemName, itemCategoria, itemPreco);
-
-  const span = criaFavorito(item);
-  li.appendChild(span);
-
-  docAdd(itemName, itemCategoria, itemPreco);
-
-  return li;
-}
-
 function favorito(span, item) {
   span.addEventListener("click", () => {
     if (span.innerText === "favorite_border") {
       span.innerText = "favorite";
       item.favorito = true;
-      adicionarFavorito(item);
     } else {
       span.innerText = "favorite_border";
       item.favorito = false;
-      removeFavorito(item);
     }
   });
-}
-
-function adicionaFavorito(item) {
-  const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-  favoritos.push(item);
-  localStorage.setItem("favoritos", JSON.stringify(favoritos));
-}
-
-function removeFavorito(item) {
-  let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-  favoritos = favoritos.filter((i) => i.nome !== item.nome);
-  localStorage.setItem("favoritos", JSON.stringify(favoritos));
 }
 
 function criaFavorito(item) {
@@ -147,12 +145,11 @@ function criaFavorito(item) {
     ["material-icons", "favorite"],
     item.favorito ? "favorite" : "favorite_border"
   );
-  favorito(span);
+  favorito(span, item);
   return span;
 }
 
-// ! FIREBASE
-
+// Funções do Firestore
 async function getDocs() {
   const liArray = [];
 
@@ -182,12 +179,14 @@ async function getDocs() {
   return liArray;
 }
 
-function docAdd(itemName, itemCategoria, itemPreco) {
+function docAdd(item) {
   docRef
     .add({
-      nome: itemName,
-      categoria: itemCategoria,
-      preco: itemPreco,
+      id: item.id,
+      nome: item.nome,
+      categoria: item.categoria,
+      preco: item.preco,
+      favorito: false,
     })
     .then((docRef) => {
       console.log("Documento foi escrito com sucesso! ", docRef.id);
