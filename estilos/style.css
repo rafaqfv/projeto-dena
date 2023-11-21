@@ -36,7 +36,7 @@ body {
 /* Estilo do cabeçalho */
 header {
   min-height: 30vh;
-  background-color: var(--cor2);
+  background-color: var(--cor2) !important;
   background: url(/img/bacc.jpg);
   background-position: center center;
   background-size: cover;
