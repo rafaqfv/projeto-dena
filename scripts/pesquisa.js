@@ -9,6 +9,10 @@ function searchItems() {
 
   allItems.forEach((item) => {
     const title = item.querySelector("h2").textContent.toLowerCase();
-    item.style.display = title.includes(searchTerm) ? "flex" : "none";
+    if (title.includes(searchTerm)) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
   });
 }
