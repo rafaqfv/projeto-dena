@@ -1,7 +1,9 @@
 const db = firebase.firestore();
 const docRef = db.collection("produtos");
 const docRefCart = db.collection("carrinho");
+const auth = firebase.auth();
 
+const formAdd = document.getElementById("formAdd");
 const addItemModal = document.getElementById("addItemModal");
 const arrayProducts = document.getElementById("arrayProducts");
 

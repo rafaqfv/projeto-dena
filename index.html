@@ -35,7 +35,7 @@
     </header>
 
     <dialog id="addItemModal">
-      <form method="dialog">
+      <form method="dialog" id="formAdd">
         <h2>Adicionar Item</h2>
         <input
           type="file"
@@ -92,19 +92,25 @@
 
     <!-- Onde os produtos serão mostrados -->
     <ul id="arrayProducts"></ul>
+
     <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
+
+    <!-- ! Firebase init -->
     <script>
       const firebaseConfig = {
-        apiKey: "AIzaSyAH506uCg6BzzHLh6QvZGXvBNunBPPubpI",
-        authDomain: "ifnmg-5a1ad.firebaseapp.com",
-        projectId: "ifnmg-5a1ad",
-        storageBucket: "ifnmg-5a1ad.appspot.com",
-        messagingSenderId: "945466355678",
-        appId: "1:945466355678:web:b10d15e8fd9928042cb74f",
+        apiKey: "AIzaSyDtrEpGiKyMSEao-4IBHd3FgSdo_20VGzw",
+        authDomain: "projeto-dena.firebaseapp.com",
+        projectId: "projeto-dena",
+        storageBucket: "projeto-dena.appspot.com",
+        messagingSenderId: "192854069151",
+        appId: "1:192854069151:web:56325be3f1e4b0ceec37aa",
       };
       firebase.initializeApp(firebaseConfig);
     </script>
+
     <script type="module" src="scripts/criar-oferta.js"></script>
+    <script src="/scripts/pesquisa.js"></script>
   </body>
 </html>
