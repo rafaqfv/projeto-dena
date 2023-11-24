@@ -2,6 +2,7 @@ const db = firebase.firestore();
 const docRef = db.collection("produtos");
 const docRefCart = db.collection("carrinho");
 const auth = firebase.auth();
+const storage = firebase.storage();
 
 const formAdd = document.getElementById("formAdd");
 const addItemModal = document.getElementById("addItemModal");
@@ -233,3 +234,4 @@ function searchItems() {
     }
   });
 }
+
