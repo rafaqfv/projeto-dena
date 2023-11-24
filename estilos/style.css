@@ -87,7 +87,9 @@ header {
 }
 
 .custom-file-upload {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
