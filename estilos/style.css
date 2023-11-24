@@ -115,10 +115,12 @@ header {
 }
 
 #previewImage {
+  border: dashed 1px rgba(128, 128, 128, 0.214);
   width: 100px;
   height: 100px;
   margin-top: .5rem;
   font-family: var(--fonte2);
+  text-align: center;
 }
 
 #addItemModal input {
@@ -209,7 +211,7 @@ header p {
 #arrayProducts {
   background-color: var(--cor4);
   margin: auto;
-  border-radius: 20px 20px 0 0;
+  border-radius: 25px 25px 0 0;
   width: 90%;
   /* height: 390px; */
   max-height: 55%;
@@ -232,14 +234,14 @@ header p {
 
 /* Estilo dos itens da lista */
 .product-item {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.246);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.065);
   background-color: var(--corFundo);
   list-style: none;
   display: flex;
   width: 100%;
   min-width: 210px;
   max-width: 240px;
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 1rem;
   margin: 1rem;
   position: relative;
