@@ -169,15 +169,16 @@ header p {
   display: flex;
   margin: auto;
   margin: 1rem auto;
-  padding: 0 .5rem;
-  justify-content: space-between;
+  /* padding: 0 .5rem; */
+  justify-content: space-evenly;
   align-items: center;
   position: relative;
 }
 
 #iconSearch {
   position: absolute;
-  left: 14.5rem;
+  /* left: 15.7rem; */
+  margin-right: -8.5rem;
   top: 50%;
   transform: translateY(-50%);
   opacity: 50%;
