@@ -257,6 +257,11 @@ header p {
   .product-item:last-child {
     margin-bottom: 1rem;
   }
+
+  #addItemModal {
+    max-width: 80%;
+  }
+
 }
 
 .product-item img {
