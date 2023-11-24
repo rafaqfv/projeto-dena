@@ -23,6 +23,7 @@ function resetForm() {
   document.getElementById("itemCategoria").value = "";
   document.getElementById("itemPreco").value = "";
   document.getElementById("itemNome").value = "";
+  document.getElementById("previewImage").src = '';
 }
 
 async function handleSubmit(event) {
@@ -198,11 +199,7 @@ function docAdd(item) {
     });
 }
 
-function uploadImg() {
-
-}
-
-
+function uploadImg() {}
 
 // ! Pesquisa de items
 const inputSearch = document.getElementById("inputSearch");
@@ -216,9 +213,9 @@ function searchItems() {
   allItems.forEach((item) => {
     const title = item.querySelector("h2").textContent.toLowerCase();
     if (title.includes(searchTerm)) {
-      item.style.display = 'flex';
+      item.style.display = "flex";
     } else {
-      item.style.display = 'none';
+      item.style.display = "none";
     }
   });
 }

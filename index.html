@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <title>Dena Cosméticos</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -24,12 +24,28 @@
     <dialog id="addItemModal">
       <form method="dialog" id="formAdd">
         <h2>Adicionar Item</h2>
-        <input
-          type="file"
-          name=""
-          id="imgItem"
-          accept="image/png, image/jpeg"
-        />
+        <div class="flex-col">
+          <label for="imgItem" class="custom-file-upload">
+            <i class="fas fa-cloud-upload-alt"></i> Escolher arquivo
+          </label>
+          <input
+            type="file"
+            name=""
+            id="imgItem"
+            accept="image/png, image/jpeg"
+          />
+          <img
+            id="previewImage"
+            alt="Preview"
+            style="
+              width: 180px;
+              height: 180px;
+              margin: 10px auto;
+              aspect-ratio: 1 / 1;
+            "
+          />
+        </div>
+
         <input
           autocomplete="off"
           type="text"
@@ -98,6 +114,6 @@
     </script>
 
     <script type="module" src="scripts/criar-oferta.js"></script>
-    <script src="/scripts/pesquisa.js"></script>
+    <script src="/scripts/imagem.js"></script>
   </body>
 </html>
