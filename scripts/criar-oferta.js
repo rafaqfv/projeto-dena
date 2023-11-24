@@ -6,8 +6,10 @@ const auth = firebase.auth();
 const formAdd = document.getElementById("formAdd");
 const addItemModal = document.getElementById("addItemModal");
 const arrayProducts = document.getElementById("arrayProducts");
+const inputSearch = document.getElementById("inputSearch");
 
 // Event Listeners
+inputSearch.addEventListener("input", searchItems);
 document.getElementById("openModalBtn").addEventListener("click", openModal);
 addItemModal.addEventListener("close", resetForm);
 addItemModal.addEventListener("submit", handleSubmit);
@@ -23,7 +25,7 @@ function resetForm() {
   document.getElementById("itemCategoria").value = "";
   document.getElementById("itemPreco").value = "";
   document.getElementById("itemNome").value = "";
-  document.getElementById("previewImage").src = '';
+  document.getElementById("previewImage").src = "";
 }
 
 async function handleSubmit(event) {
@@ -198,12 +200,6 @@ function docAdd(item) {
       console.error("Erro ao adicionar documento: ", error);
     });
 }
-
-function uploadImg() {}
-
-// ! Pesquisa de items
-const inputSearch = document.getElementById("inputSearch");
-inputSearch.addEventListener("input", searchItems);
 
 function searchItems() {
   const searchTerm = inputSearch.value.toLowerCase();
