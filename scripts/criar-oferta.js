@@ -203,6 +203,7 @@ async function getDocs() {
 function docAdd(imageURL, info) {
   docRef
     .add({
+      id: Date.now().toString(),
       nome: info.itemNome,
       categoria: info.itemCategoria,
       preco: info.itemPreco,
