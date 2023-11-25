@@ -67,7 +67,7 @@ function closeAndResetForm() {
 async function handleSubmit(event) {
   event.preventDefault();
   const imageURL = await uploadImage();
-  
+
   // Obtém as informações
   const info = getInfo();
 
