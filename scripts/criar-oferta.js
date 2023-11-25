@@ -4,6 +4,7 @@ const docRefCart = db.collection("carrinho");
 const auth = firebase.auth();
 const storage = firebase.storage();
 
+// !DOM
 const formAdd = document.getElementById("formAdd");
 const addItemModal = document.getElementById("addItemModal");
 const arrayProducts = document.getElementById("arrayProducts");
@@ -35,69 +36,59 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// Funções
+// Funções do modal
+/**
+ * Obtém as informações do formulário
+ * @returns {Object} - Objeto com informações do formulário
+ */
+function getInfo() {
+  const itemNome = document.getElementById("itemNome").value.trim();
+  const itemPreco = document.getElementById("itemPreco").value.trim();
+  const itemCategoria = document.getElementById("itemCategoria").value.trim();
+  return { itemNome, itemCategoria, itemPreco };
+}
 function openModal() {
   addItemModal.showModal();
 }
-
 function resetForm() {
   document.getElementById("itemCategoria").value = "";
   document.getElementById("itemPreco").value = "";
   document.getElementById("itemNome").value = "";
   document.getElementById("previewImage").src = "";
 }
-
-async function handleSubmit(event) {
-  event.preventDefault();
-  const newItem = criaProduto();
-  arrayProducts.appendChild(newItem);
-  addItemModal.close();
-}
-
 function closeAndResetForm() {
   addItemModal.close();
   resetForm();
 }
 
+/**
+ * Esta função pega todas as informações e envia para o firebase
+ */
+async function handleSubmit(event) {
+  event.preventDefault();
+  const imageURL = await uploadImage();
+  
+  // Obtém as informações
+  const info = getInfo();
+
+  // Verifica se todas as informações são válidas
+  if (info.itemNome && info.itemPreco && info.itemCategoria) {
+    // Adiciona o documento ao Firestore
+    docAdd(imageURL, info);
+    addItemModal.close();
+  } else {
+    console.error("Campos obrigatórios não preenchidos.");
+  }
+}
+
+/**
+ * Esta função recebe o getDocs() e adiciona os produtos no array de produtos
+ */
 async function loadProducts() {
   const liArray = await getDocs();
   liArray.forEach((li) => {
     arrayProducts.appendChild(li);
   });
-}
-
-function criaProduto() {
-  const itemNome = document.getElementById("itemNome").value.trim();
-  const itemPreco = document.getElementById("itemPreco").value.trim();
-  const itemCategoria = document.getElementById("itemCategoria").value.trim();
-
-  const li = criaElemento("li", ["product-item"]);
-
-  const img = criaImagem();
-  li.appendChild(img);
-
-  const detalhesProduto = criaDetalhesProduto(
-    itemNome,
-    itemCategoria,
-    itemPreco
-  );
-  li.appendChild(detalhesProduto);
-
-  const item = {
-    id: Date.now().toString(),
-    nome: itemNome,
-    categoria: itemCategoria,
-    preco: parseFloat(itemPreco),
-    favorito: false,
-  };
-
-  const span = criaFavorito(item);
-
-  docAdd(item);
-
-  li.appendChild(span);
-
-  return li;
 }
 
 // Funções Auxiliares
@@ -108,9 +99,9 @@ function criaElemento(tag, classes, conteudo) {
   return elemento;
 }
 
-function criaImagem() {
+function criaImagem(URL) {
   const img = criaElemento("img");
-  img.setAttribute("src", "img/rommanelcolar.webp");
+  img.setAttribute("src", URL);
   return img;
 }
 
@@ -173,7 +164,9 @@ function criaFavorito(item) {
   return span;
 }
 
-// Funções do Firestore
+/**
+ * @returns Produtos do firebase
+ */
 async function getDocs() {
   const liArray = [];
 
@@ -184,7 +177,7 @@ async function getDocs() {
       const data = doc.data();
       const li = criaElemento("li", ["product-item"]);
 
-      const img = criaImagem();
+      const img = criaImagem(data.url);
       li.appendChild(img);
 
       const detalhesProduto = criaDetalhesProduto(
@@ -199,18 +192,21 @@ async function getDocs() {
   } catch (error) {
     console.log("Erro ao obter documentos: ", error);
   }
-
   return liArray;
 }
 
-function docAdd(item) {
+/**
+ * Precisa do parametro da imagem vinda do uploadImage()
+ * @param {string} imageURL
+ * @param {Object} info - Informações a serem adicionadas
+ */
+function docAdd(imageURL, info) {
   docRef
     .add({
-      id: item.id,
-      nome: item.nome,
-      categoria: item.categoria,
-      preco: item.preco,
-      favorito: false,
+      nome: info.itemNome,
+      categoria: info.itemCategoria,
+      preco: info.itemPreco,
+      url: imageURL,
     })
     .then((docRef) => {
       console.log("Documento foi escrito com sucesso! ", docRef.id);
@@ -235,3 +231,28 @@ function searchItems() {
   });
 }
 
+/**
+ * Esta função pega o upload da imagem e armazena no firestore e retorna URL
+ * @returns {string} URL da imagem
+ */
+async function uploadImage() {
+  // @
+  const imgItemInput = document.getElementById("imgItem");
+  const file = imgItemInput.files[0];
+
+  if (file) {
+    const storageRef = storage.ref();
+    const imageRef = storageRef.child(`produtos/${file.name}`);
+
+    try {
+      await imageRef.put(file);
+      const imageURL = await imageRef.getDownloadURL();
+      return imageURL;
+    } catch (error) {
+      console.error("Erro ao fazer upload da imagem: ", error);
+      return null;
+    }
+  } else {
+    return null;
+  }
+}
