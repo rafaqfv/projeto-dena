@@ -22,7 +22,22 @@
       </p>
     </header>
 
-    <dialog id="addItemModal">
+    <dialog id="modal">
+      <span id="x">&times;</span>
+
+      <nav id="modalNav">
+        <button id="create">Create</button>
+        <button id="update">Update</button>
+      </nav>
+
+      <form action="dialog" id="updateForm">
+        <input
+          type="text"
+          autocomplete="off"
+          placeholder="Digite o nome do item"
+        />
+      </form>
+
       <form method="dialog" id="formAdd">
         <h2>Adicionar Item</h2>
         <div class="flex-col">
@@ -73,6 +88,7 @@
           <button type="reset">Cancelar</button>
         </menu>
       </form>
+
     </dialog>
 
     <!-- Barra de pesquisa, filtro e carrinho -->
@@ -113,5 +129,6 @@
     </script>
 
     <script type="module" src="scripts/criar-oferta.js"></script>
+    <script src="scripts/modal.js"></script>
   </body>
 </html>

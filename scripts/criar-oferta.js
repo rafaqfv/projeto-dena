@@ -4,18 +4,17 @@ const docRefCart = db.collection("carrinho");
 const auth = firebase.auth();
 const storage = firebase.storage();
 
-// !DOM
+// DOM
 const formAdd = document.getElementById("formAdd");
-const addItemModal = document.getElementById("addItemModal");
+const modal = document.getElementById("modal");
 const arrayProducts = document.getElementById("arrayProducts");
 const inputSearch = document.getElementById("inputSearch");
 
 // Event Listeners
 inputSearch.addEventListener("input", searchItems);
-document.getElementById("openModalBtn").addEventListener("click", openModal);
-addItemModal.addEventListener("close", resetForm);
-addItemModal.addEventListener("submit", handleSubmit);
-addItemModal.addEventListener("reset", closeAndResetForm);
+modal.addEventListener("close", resetForm);
+modal.addEventListener("submit", handleSubmit);
+modal.addEventListener("reset", closeAndResetForm);
 window.addEventListener("DOMContentLoaded", loadProducts);
 document.addEventListener("DOMContentLoaded", function () {
   const imgItemInput = document.getElementById("imgItem");
@@ -47,9 +46,7 @@ function getInfo() {
   const itemCategoria = document.getElementById("itemCategoria").value.trim();
   return { itemNome, itemCategoria, itemPreco };
 }
-function openModal() {
-  addItemModal.showModal();
-}
+
 function resetForm() {
   document.getElementById("itemCategoria").value = "";
   document.getElementById("itemPreco").value = "";
@@ -57,7 +54,7 @@ function resetForm() {
   document.getElementById("previewImage").src = "";
 }
 function closeAndResetForm() {
-  addItemModal.close();
+  modal.close();
   resetForm();
 }
 
@@ -75,7 +72,7 @@ async function handleSubmit(event) {
   if (info.itemNome && info.itemPreco && info.itemCategoria) {
     // Adiciona o documento ao Firestore
     docAdd(imageURL, info);
-    addItemModal.close();
+    modal.close();
   } else {
     console.error("Campos obrigatórios não preenchidos.");
   }
