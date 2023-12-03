@@ -6,8 +6,20 @@ const updatePreco = document.getElementById("updatePreco");
 const updateItemBtn = document.getElementById("updateItemBtn");
 const updateNow = document.getElementById("updateNow");
 
+// CSS IN JS
+novoNome.style.textTransform = "capitalize";
+updateCategoria.style.textTransform = "capitalize";
+updateNome.style.textTransform = "capitalize";
+
+document.getElementById("modal").addEventListener("close", () => {
+  updateCategoria.style.display = "none";
+  updatePreco.style.display = "none";
+  novoNome.style.display = "none";
+  document.getElementById('updateName').value = '';
+});
+
 updateItemBtn.addEventListener("click", async () => {
-  const busca = updateNome.value.trim();
+  const busca = updateNome.value.trim().toLowerCase();
 
   if (busca !== "") {
     // Realize a consulta no Firebase Firestore

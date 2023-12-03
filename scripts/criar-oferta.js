@@ -201,7 +201,7 @@ function docAdd(imageURL, info) {
   docRef
     .add({
       id: Date.now().toString(),
-      nome: info.itemNome,
+      nome: info.itemNome.toLowerCase(),
       categoria: info.itemCategoria,
       preco: info.itemPreco,
       url: imageURL,
