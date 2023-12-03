@@ -41,7 +41,10 @@ document.addEventListener("DOMContentLoaded", function () {
  * @returns {Object} - Objeto com informações do formulário
  */
 function getInfo() {
-  const itemNome = document.getElementById("itemNome").value.trim();
+  const itemNome = document
+    .getElementById("itemNome")
+    .value.trim()
+    .toLowerCase();
   const itemPreco = document.getElementById("itemPreco").value.trim();
   const itemCategoria = document.getElementById("itemCategoria").value.trim();
   return { itemNome, itemCategoria, itemPreco };
@@ -201,7 +204,7 @@ function docAdd(imageURL, info) {
   docRef
     .add({
       id: Date.now().toString(),
-      nome: info.itemNome.toLowerCase(),
+      nome: info.itemNome,
       categoria: info.itemCategoria,
       preco: info.itemPreco,
       url: imageURL,
