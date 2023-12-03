@@ -14,7 +14,7 @@
   </head>
   <body>
     <header>
-      <span class="material-icons openModalBtn" id="openModalBtn"> login </span>
+      <span class="material-icons openModalBtn" id="openModalBtn"> add </span>
       <h1>Dena</h1>
       <p>
         Levando <strong>beleza</strong> e <strong>auto-estima</strong> através
@@ -30,12 +30,25 @@
         <button id="update">Update</button>
       </nav>
 
-      <form action="dialog" id="updateForm">
+      <form action="dialog" id="updateForm" style="margin-top: 1.5rem">
         <input
           type="text"
           autocomplete="off"
           placeholder="Digite o nome do item"
+          id="updateName"
         />
+        <h2>Novos Dados:</h2>
+        <input
+          type="text"
+          autocomplete="off"
+          placeholder="Digite o nome do item"
+          id="newName"
+          style="display: none;"
+        />
+        <input type="text" id="updateCategoria" autocomplete="off" style="display: none;"/>
+        <input type="text" id="updatePreco" autocomplete="off" style="display: none;"/>
+        <button id="updateItemBtn" style="cursor: pointer">Buscar</button>
+        <button id="updateNow" style="cursor: pointer">Atualizar</button>
       </form>
 
       <form method="dialog" id="formAdd">
@@ -88,7 +101,6 @@
           <button type="reset">Cancelar</button>
         </menu>
       </form>
-
     </dialog>
 
     <!-- Barra de pesquisa, filtro e carrinho -->
@@ -130,5 +142,6 @@
 
     <script type="module" src="scripts/criar-oferta.js"></script>
     <script src="scripts/modal.js"></script>
+    <script src="scripts/atualizar-oferta.js"></script>
   </body>
 </html>

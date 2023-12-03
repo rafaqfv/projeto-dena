@@ -184,6 +184,10 @@ menu > button[type=reset] {
   font-size: 3rem;
 }
 
+#updateForm button {
+  padding: .5rem 1rem;
+}
+
 /* Estilo dos elementos do cabeçalho */
 header h1 {
   color: var(--cor3);
@@ -302,6 +306,8 @@ header p {
 
 .product-item img {
   max-width: 140px;
+  width: 140px;
+  height: 140px;
   align-self: center;
   aspect-ratio: 1/1;
 }
