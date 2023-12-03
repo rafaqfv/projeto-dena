@@ -186,6 +186,11 @@ menu > button[type=reset] {
 
 #updateForm button {
   padding: .5rem 1rem;
+  background-color: rgb(0, 200, 255);
+  font-weight: 700;
+  border: none;
+  color: #fff;
+  border-radius: .3rem;
 }
 
 /* Estilo dos elementos do cabeçalho */

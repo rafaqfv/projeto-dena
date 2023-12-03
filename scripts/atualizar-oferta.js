@@ -78,7 +78,8 @@ updateNow.addEventListener("click", async () => {
         preco: novoPreco,
       });
 
-      console.log("Item atualizado com sucesso!");
+      alert("Item atualizado com sucesso!");
+      document.getElementById('modal').close();
     } else {
       console.log("Nenhum item encontrado com o nome especificado.");
     }
