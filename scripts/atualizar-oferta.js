@@ -15,7 +15,7 @@ document.getElementById("modal").addEventListener("close", () => {
   updateCategoria.style.display = "none";
   updatePreco.style.display = "none";
   novoNome.style.display = "none";
-  document.getElementById('updateName').value = '';
+  document.getElementById("updateName").value = "";
 });
 
 updateItemBtn.addEventListener("click", async () => {
@@ -71,15 +71,17 @@ updateNow.addEventListener("click", async () => {
       const novoPreco = updatePreco.value; // Substitua pelo novo valor
       const newName = novoNome.value;
 
-      // Atualize os campos no Firestore
-      await primeiroItemRef.update({
-        nome: newName,
-        categoria: novoCategoria,
-        preco: novoPreco,
-      });
+      if (novoCategoria !== "" && novoPreco !== "" && newName !== "") {
+        // Atualize os campos no Firestore
+        await primeiroItemRef.update({
+          nome: newName,
+          categoria: novoCategoria,
+          preco: novoPreco,
+        });
 
-      alert("Item atualizado com sucesso!");
-      document.getElementById('modal').close();
+        alert("Item atualizado com sucesso!");
+        document.getElementById("modal").close();
+      }
     } else {
       console.log("Nenhum item encontrado com o nome especificado.");
     }

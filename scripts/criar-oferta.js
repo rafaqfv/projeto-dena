@@ -102,6 +102,7 @@ function criaElemento(tag, classes, conteudo) {
 function criaImagem(URL) {
   const img = criaElemento("img");
   img.setAttribute("src", URL);
+  img.setAttribute("loading", "lazy");
   return img;
 }
 
