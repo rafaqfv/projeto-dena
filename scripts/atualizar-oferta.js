@@ -5,6 +5,7 @@ const updateCategoria = document.getElementById("updateCategoria");
 const updatePreco = document.getElementById("updatePreco");
 const updateItemBtn = document.getElementById("updateItemBtn");
 const updateNow = document.getElementById("updateNow");
+const deleteItemBtn = document.getElementById("deleteItemBtn");
 
 // CSS IN JS
 novoNome.style.textTransform = "capitalize";
@@ -87,5 +88,42 @@ updateNow.addEventListener("click", async () => {
     }
   } catch (error) {
     console.error("Erro ao realizar a consulta:", error);
+  }
+});
+
+// Novo event listener para o botão de exclusão
+deleteItemBtn.addEventListener("click", async () => {
+  const confirmarExclusao = confirm(
+    "Tem certeza que deseja excluir este item?"
+  );
+
+  if (confirmarExclusao) {
+    // Realize a consulta novamente para obter a referência do documento
+    const busca = updateNome.value.trim();
+    const query = db.collection("produtos").where("nome", "==", busca);
+
+    try {
+      const querySnapshot = await query.get();
+
+      if (!querySnapshot.empty) {
+        // Obtenha a referência do primeiro documento
+        const primeiroItemRef = querySnapshot.docs[0].ref;
+
+        // Exclua o documento no Firestore
+        await primeiroItemRef.delete();
+
+        alert("Item excluído com sucesso!");
+
+        // Limpe os campos após a exclusão, se desejar
+        updateNome.value = "";
+        updateCategoria.value = "";
+        updatePreco.value = "";
+        document.getElementById("modal").close();
+      } else {
+        console.log("Nenhum item encontrado com o nome especificado.");
+      }
+    } catch (error) {
+      console.error("Erro ao realizar a consulta:", error);
+    }
   }
 });

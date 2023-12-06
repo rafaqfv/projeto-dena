@@ -41,10 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
  * @returns {Object} - Objeto com informações do formulário
  */
 function getInfo() {
-  const itemNome = document
-    .getElementById("itemNome")
-    .value.trim()
-    .toLowerCase();
+  const itemNome = document.getElementById("itemNome").value.trim().toLowerCase();
+  itemNome = itemNome.toLowerCase();
   const itemPreco = document.getElementById("itemPreco").value.trim();
   const itemCategoria = document.getElementById("itemCategoria").value.trim();
   return { itemNome, itemCategoria, itemPreco };
