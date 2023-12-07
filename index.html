@@ -3,30 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicon/favicon-16x16.png"
-    />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <title>Dena Cosméticos</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="estilos/style.css" />
   </head>
   <body>
     <header>
-      <span class="material-icons openModalBtn" id="openModalBtn"> login </span>
+      <span class="material-icons openModalBtn" id="openModalBtn"> add </span>
       <h1>Dena</h1>
       <p>
         Levando <strong>beleza</strong> e <strong>auto-estima</strong> através
@@ -34,28 +22,96 @@
       </p>
     </header>
 
-    <dialog id="addItemModal">
-      <form method="dialog">
-        <h2>Adicionar Item</h2>
+    <dialog id="modal">
+      <span id="x">&times;</span>
+
+      <nav id="modalNav">
+        <button id="create">Create</button>
+        <button id="update">Update</button>
+      </nav>
+
+      <form action="dialog" id="updateForm" style="margin-top: 1.5rem">
         <input
-          type="file"
-          name=""
-          id="imagemName"
-          accept="image/png, image/jpeg"
+          type="text"
+          autocomplete="off"
+          placeholder="Digite o nome do item"
+          id="updateName"
+        />
+        <h2>Novos Dados:</h2>
+        <input
+          type="text"
+          autocomplete="off"
+          placeholder="Digite o nome do item"
+          id="newName"
+          style="display: none"
         />
         <input
           type="text"
-          id="itemName"
+          id="updateCategoria"
+          autocomplete="off"
+          style="display: none"
+        />
+        <input
+          type="text"
+          id="updatePreco"
+          autocomplete="off"
+          style="display: none"
+        />
+        <button id="updateItemBtn" style="cursor: pointer">Buscar</button>
+        <button id="updateNow" style="cursor: pointer">Atualizar</button>
+        <!-- Adicione este botão ao seu formulário de atualização -->
+        <button
+          style="
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            background-color: rgb(255, 0, 0);
+          "
+          id="deleteItemBtn"
+        >
+          Excluir
+        </button>
+      </form>
+
+      <form method="dialog" id="formAdd">
+        <h2>Adicionar Item</h2>
+        <div class="flex-col">
+          <label for="imgItem" class="custom-file-upload">
+            <i class="material-icons">upload</i> Escolher imagem
+          </label>
+          <input
+            type="file"
+            name=""
+            id="imgItem"
+            accept="image/png, image/jpeg"
+          />
+          <img
+            id="previewImage"
+            alt="Preview"
+            style="
+              width: 180px;
+              height: 180px;
+              margin: 10px auto;
+              aspect-ratio: 1 / 1;
+            "
+          />
+        </div>
+
+        <input
+          autocomplete="off"
+          type="text"
+          id="itemNome"
           placeholder="Digite o nome do item"
           required
         />
         <input
+          autocomplete="off"
           type="text"
           id="itemCategoria"
           placeholder="Digite a categoria"
           required
         />
         <input
+          autocomplete="off"
           type="number"
           id="itemPreco"
           placeholder="Digite o preço"
@@ -73,9 +129,6 @@
       <div id="search">
         <input type="text" id="inputSearch" placeholder="Buscar" />
         <span class="material-icons" id="iconSearch"> search </span>
-        <span class="material-icons" style="cursor: pointer">
-          filter_list
-        </span>
         <span
           id="cart-icon"
           class="material-icons"
@@ -88,21 +141,28 @@
     </nav>
 
     <!-- Onde os produtos serão mostrados -->
-    <ul id="arrayProducts">
-      <li class="product-item">
-        <img src="img/rommanelcolar.webp" alt="Pingente de borboleta" />
-        <div class="product-details">
-          <h2>Pingente borboleta de prata com zircônias</h2>
-          <p>Rommanel - pingente</p>
-          <div class="price-info">
-            <h4>224</h4>
-            <h3>199,90</h3>
-            <span class="material-icons favorite">favorite_border</span>
-          </div>
-        </div>
-      </li>
-    </ul>
-    <script src="scripts/favoritos.js"></script>
-    <script src="scripts/add-item.js"></script>
+    <ul id="arrayProducts"></ul>
+
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-storage-compat.js"></script>
+
+    <!-- ! Firebase init -->
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDtrEpGiKyMSEao-4IBHd3FgSdo_20VGzw",
+        authDomain: "projeto-dena.firebaseapp.com",
+        projectId: "projeto-dena",
+        storageBucket: "projeto-dena.appspot.com",
+        messagingSenderId: "192854069151",
+        appId: "1:192854069151:web:56325be3f1e4b0ceec37aa",
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script type="module" src="scripts/criar-oferta.js"></script>
+    <script src="scripts/modal.js"></script>
+    <script src="scripts/atualizar-oferta.js"></script>
   </body>
 </html>

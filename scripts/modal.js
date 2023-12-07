@@ -1,28 +1,32 @@
-var addItemModal = document.getElementById("addItemModal");
-var openModalBtn = document.getElementById("openModalBtn");
-var itemInput = document.getElementById("itemInput");
+const updateForm = document.getElementById("updateForm");
+const createForm = document.getElementById("formAdd");
+const btnUpdate = document.getElementById("update");
+const btnCreate = document.getElementById("create");
+const modalNav = document.getElementById("modalNav");
+const modal = document.getElementById("modal");
+const x = document.getElementById("x");
+createForm.style.display = "none";
+updateForm.style.display = "none";
 
-openModalBtn.addEventListener("click", function() {
-  addItemModal.showModal();
+document.getElementById("openModalBtn").addEventListener("click", () => {
+  modal.showModal();
 });
 
-addItemModal.addEventListener("close", function() {
-  // Limpar o campo de entrada quando o modal é fechado
-  itemInput.value = "";
+btnUpdate.addEventListener("click", () => {
+  updateForm.style.display = "block";
+  modalNav.style.display = "none";
+});
+btnCreate.addEventListener("click", () => {
+  createForm.style.display = "block";
+  modalNav.style.display = "none";
 });
 
-addItemModal.addEventListener("submit", function(event) {
-  // Adicionar lógica para lidar com o item adicionado aqui
-  var itemValue = itemInput.value;
-  if (itemValue) {
-    console.log("Item adicionado: " + itemValue);
-    // Fechar o modal após adicionar o item
-    addItemModal.close();
-  }
-  event.preventDefault();
+modal.addEventListener("close", () => {
+  modalNav.style.display = "flex";
+  updateForm.style.display = "none";
+  createForm.style.display = "none";
 });
 
-addItemModal.addEventListener("reset", function() {
-  // Fechar o modal ao clicar no botão "Cancelar"
-  addItemModal.close();
+x.addEventListener('click', () => {
+  modal.close();
 });
