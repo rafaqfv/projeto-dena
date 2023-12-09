@@ -155,16 +155,6 @@ function favorito(span, item) {
   });
 }
 
-function criaFavorito(item) {
-  const span = criaElemento(
-    "span",
-    ["material-icons", "favorite"],
-    item.favorito ? "favorite" : "favorite_border"
-  );
-  favorito(span, item);
-  return span;
-}
-
 /**
  * @returns Produtos do firebase
  */
