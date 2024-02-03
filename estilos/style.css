@@ -1,7 +1,6 @@
 /* Importando fontes */
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lato:wght@400;700&display=swap");
 
-
 /* Definindo variáveis de cor e fonte */
 :root {
   --corFundo: #ffffff;
@@ -51,9 +50,9 @@ header {
   position: absolute;
   left: 1rem;
   cursor: pointer;
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 25%;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .openModalBtn:hover {
@@ -75,7 +74,7 @@ header {
   background-color: #fefefe;
   border: 1px solid #888;
   text-align: center;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -118,15 +117,16 @@ header {
   border: dashed 1px rgba(128, 128, 128, 0.214);
   width: 100px;
   height: 100px;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   font-family: var(--fonte2);
   text-align: center;
+  object-fit: cover;
 }
 
 #modal input {
   width: 100%;
-  margin-bottom: .6rem;
-  padding: .5rem;
+  margin-bottom: 0.6rem;
+  padding: 0.5rem;
 }
 
 #modal menu {
@@ -141,14 +141,14 @@ header {
 
 menu > button {
   cursor: pointer;
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 5px;
   border: none;
   background-color: #008000;
   color: var(--corFundo);
 }
 
-menu > button[type=reset] {
+menu > button[type="reset"] {
   background-color: rgb(255, 0, 0);
 }
 
@@ -166,7 +166,7 @@ menu > button[type=reset] {
   height: 3rem;
   border: none;
   color: var(--corFundo);
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   background-color: rgba(107, 179, 255, 0.72);
   font-weight: 700;
   cursor: pointer;
@@ -185,12 +185,12 @@ menu > button[type=reset] {
 }
 
 #updateForm button {
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   background-color: rgb(0, 200, 255);
   font-weight: 700;
   border: none;
   color: #fff;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
 }
 
 /* Estilo dos elementos do cabeçalho */
@@ -269,8 +269,6 @@ header p {
   transform: translateX(-50%);
 }
 
-
-
 #arrayProducts::-webkit-scrollbar {
   display: none;
 }
@@ -297,7 +295,7 @@ header p {
     width: 370px;
     max-width: 370px;
   }
-  
+
   .product-item:first-child {
     margin-top: 2rem;
   }
@@ -313,7 +311,6 @@ header p {
   #arrayProducts {
     width: 100%;
   }
-
 }
 
 .product-item img {
@@ -322,6 +319,8 @@ header p {
   height: 140px;
   align-self: center;
   aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: .2rem;
 }
 
 .product-details {
@@ -347,7 +346,7 @@ h4 {
   margin-top: 2.7rem;
   opacity: 50%;
   text-decoration: line-through;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 h3 {
@@ -361,7 +360,7 @@ h3 {
   bottom: 1.2rem;
   right: 2rem;
   user-select: none;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 @media screen and (orientation: landscape) {

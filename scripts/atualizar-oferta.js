@@ -1,3 +1,5 @@
+// * Este arquivo altera informações e deleta itens
+
 const db = firebase.firestore();
 const updateNome = document.getElementById("updateName");
 const novoNome = document.getElementById("newName");
@@ -54,7 +56,7 @@ updateItemBtn.addEventListener("click", async () => {
   }
 });
 
-// Event listener para o botão de atualização
+// Event listener para o botão de atualização do item
 updateNow.addEventListener("click", async () => {
   // Realize a consulta novamente para obter a referência do documento
   const busca = updateNome.value.trim();
@@ -91,7 +93,7 @@ updateNow.addEventListener("click", async () => {
   }
 });
 
-// Novo event listener para o botão de exclusão
+// Novo event listener para o botão de exclusão de item
 deleteItemBtn.addEventListener("click", async () => {
   const confirmarExclusao = confirm(
     "Tem certeza que deseja excluir este item?"

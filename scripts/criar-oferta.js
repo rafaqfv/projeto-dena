@@ -70,15 +70,16 @@ async function handleSubmit(event) {
 
   // Obtém as informações
   const info = getInfo();
+  const { itemNome, itemPreco, itemCategoria } = info;
 
   // Verifica se todas as informações são válidas
-  if (info.itemNome && info.itemPreco && info.itemCategoria) {
-    // Adiciona o documento ao Firestore
-    docAdd(imageURL, info);
-    modal.close();
-  } else {
-    console.error("Campos obrigatórios não preenchidos.");
-  }
+  if (!itemNome || !itemPreco || !itemCategoria)
+    return console.error("Campos obrigatórios não preenchidos.");
+
+  // Adiciona o documento ao Firestore
+  docAdd(imageURL, info);
+  alert("Sucesso");
+  modal.close();
 }
 
 /**
