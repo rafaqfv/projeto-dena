@@ -6,4 +6,7 @@ Este projeto está sendo desenvolvido para as disciplinas de:
 
 Têm o intuito de resolver a falta de tempo de uma vendedora de Cosméticos.
 
-Desenvolvedores: Rafael, Carlos Eduardo e João Pedro
+Desenvolvedores:
+- Rafael
+- Carlos Eduardo
+- João Pedro
