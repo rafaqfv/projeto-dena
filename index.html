@@ -25,6 +25,12 @@
     <dialog id="modal">
       <span id="x">&times;</span>
 
+      <form action="dialog" id="auth-guard">
+        <input type="password" placeholder="Senha" id="authKey" required />
+        <p style="display: none;" id="loadingAuth">Carregando...</p>
+        <input type="submit" value="Entrar" id="authBtn" />
+      </form>
+
       <nav id="modalNav">
         <button id="create">Create</button>
         <button id="update">Update</button>
@@ -59,7 +65,7 @@
         />
         <button id="updateItemBtn" style="cursor: pointer">Buscar</button>
         <button id="updateNow" style="cursor: pointer">Atualizar</button>
-        
+
         <button
           style="
             padding: 0.5rem 1rem;
@@ -162,7 +168,8 @@
     </script>
 
     <script type="module" src="scripts/criar-oferta.js"></script>
-    <script src="scripts/modal.js"></script>
-    <script src="scripts/atualizar-oferta.js"></script>
+    <script type="module" src="scripts/modal.js"></script>
+    <script type="module" src="scripts/atualizar-oferta.js"></script>
+    <script type="module" src="scripts/auth-guard.js"></script>
   </body>
 </html>
