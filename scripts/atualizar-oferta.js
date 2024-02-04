@@ -5,10 +5,13 @@ const updateNome = document.getElementById("updateName");
 const novoNome = document.getElementById("newName");
 const updateCategoria = document.getElementById("updateCategoria");
 const updatePreco = document.getElementById("updatePreco");
-const updateItemBtn = document.getElementById("updateItemBtn");
+const searchItemBtn = document.getElementById("searchItemBtn");
 const updateNow = document.getElementById("updateNow");
 const deleteItemBtn = document.getElementById("deleteItemBtn");
+
+// TODO: ⬇
 const loadingDados = document.getElementById("loadingDados");
+// TODO: ⬆
 
 // CSS IN JS
 novoNome.style.textTransform = "capitalize";
@@ -22,10 +25,10 @@ document.getElementById("modal").addEventListener("close", () => {
   document.getElementById("updateName").value = "";
 });
 
-updateItemBtn.addEventListener("click", async () => {
+searchItemBtn.addEventListener("click", async () => {
   const busca = updateNome.value.trim().toLowerCase();
 
-  if (busca === "") return;
+  if (busca === "") return alert("Preencha os campos necessários.");
   // Realize a consulta no Firebase Firestore
   const query = db.collection("produtos").where("nome", "==", busca);
 
@@ -62,8 +65,9 @@ updateNow.addEventListener("click", async () => {
 
   try {
     const querySnapshot = await query.get();
-
     if (querySnapshot.empty) return;
+
+    loadingDados.style.display = "block";
 
     // Obtenha a referência do primeiro documento
     const primeiroItemRef = querySnapshot.docs[0].ref;
@@ -85,6 +89,7 @@ updateNow.addEventListener("click", async () => {
 
     alert("Item atualizado com sucesso!");
     document.getElementById("modal").close();
+    loadingDados.style.display = "none";
   } catch (error) {
     console.error("Erro ao realizar a consulta:", error);
   }
@@ -92,6 +97,8 @@ updateNow.addEventListener("click", async () => {
 
 // Novo event listener para o botão de exclusão de item
 deleteItemBtn.addEventListener("click", async () => {
+  if (!updateNome.value.trim()) return alert("Preencha o campo de pesquisa.");
+
   const confirmarExclusao = confirm(
     "Tem certeza que deseja excluir este item?"
   );

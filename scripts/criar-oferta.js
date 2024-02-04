@@ -77,8 +77,6 @@ async function handleSubmit(event) {
 
   // Adiciona o documento ao Firestore
   docAdd(imageURL, info);
-  alert("Sucesso");
-  modal.close();
 }
 
 /**
@@ -148,10 +146,10 @@ function favorito(span, item) {
     if (span.innerText === "favorite_border") {
       span.innerText = "favorite";
       item.favorito = true;
-    } else {
-      span.innerText = "favorite_border";
-      item.favorito = false;
+      return;
     }
+    span.innerText = "favorite_border";
+    item.favorito = false;
   });
 }
 
@@ -192,6 +190,8 @@ async function getDocs() {
  * @param {Object} info - Informações a serem adicionadas
  */
 function docAdd(imageURL, info) {
+  if (imageURL == null) return alert("Envie uma imagem.");
+
   docRef
     .add({
       id: Date.now().toString(),
@@ -202,6 +202,8 @@ function docAdd(imageURL, info) {
     })
     .then((docRef) => {
       console.log("Documento foi escrito com sucesso! ", docRef.id);
+      alert("Sucesso");
+      modal.close();
     })
     .catch((error) => {
       console.error("Erro ao adicionar documento: ", error);
@@ -217,9 +219,9 @@ function searchItems() {
     const title = item.querySelector("h2").textContent.toLowerCase();
     if (title.includes(searchTerm)) {
       item.style.display = "flex";
-    } else {
-      item.style.display = "none";
+      return;
     }
+    item.style.display = "none";
   });
 }
 
@@ -232,19 +234,16 @@ async function uploadImage() {
   const imgItemInput = document.getElementById("imgItem");
   const file = imgItemInput.files[0];
 
-  if (file) {
-    const storageRef = storage.ref();
-    const imageRef = storageRef.child(`produtos/${file.name}`);
+  if (!file) return null;
+  const storageRef = storage.ref();
+  const imageRef = storageRef.child(`produtos/${file.name}`);
 
-    try {
-      await imageRef.put(file);
-      const imageURL = await imageRef.getDownloadURL();
-      return imageURL;
-    } catch (error) {
-      console.error("Erro ao fazer upload da imagem: ", error);
-      return null;
-    }
-  } else {
+  try {
+    await imageRef.put(file);
+    const imageURL = await imageRef.getDownloadURL();
+    return imageURL;
+  } catch (error) {
+    console.error("Erro ao fazer upload da imagem: ", error);
     return null;
   }
 }
