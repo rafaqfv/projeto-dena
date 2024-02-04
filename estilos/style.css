@@ -211,6 +211,11 @@ menu > button[type="reset"] {
   border-radius: 0.3rem;
 }
 
+#loadingDados {
+  display: none;
+  margin-top: .2rem;
+}
+
 /* Estilo dos elementos do cabeçalho */
 header h1 {
   color: var(--cor3);

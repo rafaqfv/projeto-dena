@@ -8,6 +8,7 @@ const updatePreco = document.getElementById("updatePreco");
 const updateItemBtn = document.getElementById("updateItemBtn");
 const updateNow = document.getElementById("updateNow");
 const deleteItemBtn = document.getElementById("deleteItemBtn");
+const loadingDados = document.getElementById("loadingDados");
 
 // CSS IN JS
 novoNome.style.textTransform = "capitalize";
@@ -24,35 +25,32 @@ document.getElementById("modal").addEventListener("close", () => {
 updateItemBtn.addEventListener("click", async () => {
   const busca = updateNome.value.trim().toLowerCase();
 
-  if (busca !== "") {
-    // Realize a consulta no Firebase Firestore
-    const query = db.collection("produtos").where("nome", "==", busca);
+  if (busca === "") return;
+  // Realize a consulta no Firebase Firestore
+  const query = db.collection("produtos").where("nome", "==", busca);
 
-    try {
-      const querySnapshot = await query.get();
+  try {
+    const querySnapshot = await query.get();
 
-      if (!querySnapshot.empty) {
-        // Se houver resultados, obtenha a referência do primeiro documento
-        const primeiroItem = querySnapshot.docs[0].data();
+    if (querySnapshot.empty)
+      alert("Nenhum item encontrado com o nome especificado.");
+    // Se houver resultados, obtenha a referência do primeiro documento
+    const primeiroItem = querySnapshot.docs[0].data();
 
-        // Exiba os campos de categoria e preço
-        updateCategoria.style.display = "block";
-        updatePreco.style.display = "block";
-        novoNome.style.display = "block";
+    // Exiba os campos de categoria e preço
+    updateCategoria.style.display = "block";
+    updatePreco.style.display = "block";
+    novoNome.style.display = "block";
 
-        // Preencha os campos com os dados do item
-        updateCategoria.value = primeiroItem.categoria;
-        updatePreco.value = primeiroItem.preco;
-        novoNome.value = primeiroItem.nome;
+    // Preencha os campos com os dados do item
+    updateCategoria.value = primeiroItem.categoria;
+    updatePreco.value = primeiroItem.preco;
+    novoNome.value = primeiroItem.nome;
 
-        // Habilita o botão de atualização
-        updateNow.disabled = false;
-      } else {
-        console.log("Nenhum item encontrado com o nome especificado.");
-      }
-    } catch (error) {
-      console.error("Erro ao realizar a consulta:", error);
-    }
+    // Habilita o botão de atualização
+    updateNow.disabled = false;
+  } catch (error) {
+    console.error("Erro ao realizar a consulta:", error);
   }
 });
 
@@ -65,29 +63,28 @@ updateNow.addEventListener("click", async () => {
   try {
     const querySnapshot = await query.get();
 
-    if (!querySnapshot.empty) {
-      // Obtenha a referência do primeiro documento
-      const primeiroItemRef = querySnapshot.docs[0].ref;
+    if (querySnapshot.empty) return;
 
-      // Atualize os campos de categoria e preço
-      const novoCategoria = updateCategoria.value; // Substitua pelo novo valor
-      const novoPreco = updatePreco.value; // Substitua pelo novo valor
-      const newName = novoNome.value;
+    // Obtenha a referência do primeiro documento
+    const primeiroItemRef = querySnapshot.docs[0].ref;
 
-      if (novoCategoria !== "" && novoPreco !== "" && newName !== "") {
-        // Atualize os campos no Firestore
-        await primeiroItemRef.update({
-          nome: newName,
-          categoria: novoCategoria,
-          preco: novoPreco,
-        });
+    // Atualize os campos de categoria e preço
+    const novoCategoria = updateCategoria.value; // Substitua pelo novo valor
+    const novoPreco = updatePreco.value; // Substitua pelo novo valor
+    const newName = novoNome.value;
 
-        alert("Item atualizado com sucesso!");
-        document.getElementById("modal").close();
-      }
-    } else {
-      console.log("Nenhum item encontrado com o nome especificado.");
-    }
+    if (!novoCategoria || !novoPreco || !newName)
+      return alert("Por favor preencha todos os campos");
+
+    // Atualize os campos no Firestore
+    await primeiroItemRef.update({
+      nome: newName,
+      categoria: novoCategoria,
+      preco: novoPreco,
+    });
+
+    alert("Item atualizado com sucesso!");
+    document.getElementById("modal").close();
   } catch (error) {
     console.error("Erro ao realizar a consulta:", error);
   }
@@ -99,33 +96,31 @@ deleteItemBtn.addEventListener("click", async () => {
     "Tem certeza que deseja excluir este item?"
   );
 
-  if (confirmarExclusao) {
-    // Realize a consulta novamente para obter a referência do documento
-    const busca = updateNome.value.trim();
-    const query = db.collection("produtos").where("nome", "==", busca);
+  if (!confirmarExclusao) return;
+  // Realize a consulta novamente para obter a referência do documento
+  const busca = updateNome.value.trim();
+  const query = db.collection("produtos").where("nome", "==", busca);
 
-    try {
-      const querySnapshot = await query.get();
+  try {
+    const querySnapshot = await query.get();
 
-      if (!querySnapshot.empty) {
-        // Obtenha a referência do primeiro documento
-        const primeiroItemRef = querySnapshot.docs[0].ref;
+    if (querySnapshot.empty)
+      return console.log("Nenhum item encontrado com o nome especificado.");
 
-        // Exclua o documento no Firestore
-        await primeiroItemRef.delete();
+    // Obtenha a referência do primeiro documento
+    const primeiroItemRef = querySnapshot.docs[0].ref;
 
-        alert("Item excluído com sucesso!");
+    // Exclua o documento no Firestore
+    await primeiroItemRef.delete();
 
-        // Limpe os campos após a exclusão, se desejar
-        updateNome.value = "";
-        updateCategoria.value = "";
-        updatePreco.value = "";
-        document.getElementById("modal").close();
-      } else {
-        console.log("Nenhum item encontrado com o nome especificado.");
-      }
-    } catch (error) {
-      console.error("Erro ao realizar a consulta:", error);
-    }
+    alert("Item excluído com sucesso!");
+
+    // Limpe os campos após a exclusão, se desejar
+    updateNome.value = "";
+    updateCategoria.value = "";
+    updatePreco.value = "";
+    document.getElementById("modal").close();
+  } catch (error) {
+    console.error("Erro ao realizar a consulta:", error);
   }
 });
